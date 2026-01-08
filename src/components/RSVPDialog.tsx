@@ -120,7 +120,7 @@ const RSVPDialog = () => {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="message">Mensaje (opcional)</Label>
+              <Label htmlFor="message">Mensaje (¡Nombra quienes!)</Label>
               <Input
                 id="message"
                 value={formData.message}
