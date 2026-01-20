@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Calendar, Heart } from "lucide-react";
 import { GuestInfo } from "@/data/guestCodes";
 import Countdown from "@/components/Countdown";
+import Timeline from "@/components/Timeline";
 import Location from "@/components/Location";
 import Dresscode from "@/components/Dresscode";
 import RSVPDialog from "@/components/RSVPDialog";
 import weddingHero from "@/assets/wedding-hero.jpg";
 import couplePhoto4 from "@/assets/couple-photo-4.jpg";
+import GiftRegistry from "@/components/GiftRegistry";
+
 
 const Invitation = () => {
   const navigate = useNavigate();
@@ -56,7 +59,7 @@ const Invitation = () => {
 
           <div className="flex items-center justify-center gap-3 text-lg md:text-xl mb-8">
             <Calendar className="w-5 h-5 text-wedding-gold" />
-            <time className="font-medium">15 de Diciembre, 2027</time>
+            <time className="font-medium">10 de Enero, 2027</time>
           </div>
 
           {guest.message && (
@@ -77,7 +80,10 @@ const Invitation = () => {
       <section className="bg-gradient-to-b from-background to-secondary/20">
         <Countdown />
       </section>
-
+          {/* Timeline Section */}
+      <section className="bg-gradient-to-b from-background to-secondary/20">
+        <Timeline />
+      </section> 
       {/* Location Section */}
       <section>
         <Location />
@@ -87,7 +93,10 @@ const Invitation = () => {
       <section className="bg-gradient-to-b from-secondary/20 to-background">
         <Dresscode />
       </section>
-
+    {/* Dresscode Section */}
+      <section className="bg-gradient-to-b from-secondary/20 to-background">
+        <GiftRegistry />
+      </section>
       {/* RSVP Section */}
       <section className="py-12 px-4 bg-accent/30">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">
@@ -97,7 +106,7 @@ const Invitation = () => {
               Confirma tu asistencia
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              Tu presencia es el mejor regalo. Por favor, háznoslo saber antes del 1 de noviembre de 2027.
+              Nos encantaría contar con vos en esta celebración. Por favor, hacenos saber si vas a poder asistir.
             </p>
             <RSVPDialog />
           </div>
