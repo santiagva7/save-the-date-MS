@@ -55,7 +55,15 @@ const RSVPDialog = () => {
     
     // Generar mensaje para WhatsApp
     const attendanceText = formData.attendance === "yes" ? "Gracias por la invitación, ahí voy a estar" : "No voy a poder asistir a su boda";
-    const whatsappMessage = `Hola Santi, soy ${formData.name}.\n\n${attendanceText}${formData.message ? `\nTe recuerdo que en la comida no consumo: ${formData.message}` : ""}\n\n¡Muchas gracias!`;
+    let whatsappMessage = `Hola Santi, soy ${formData.name}.\n\n${attendanceText}${formData.message ? `\n\nTe recuerdo que en la comida no consumo: ${formData.message}` : ""}`;
+    
+    // Si tiene que pagar tarjeta, agregar el texto del comprobante
+    if (guestPrice) {
+      whatsappMessage += `\n\nTambién te adjunto el comprobante de transferencia`;
+    }
+    
+    whatsappMessage += `\n\n¡Muchas gracias!`;
+    
     // Codificar el mensaje para URL
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappPhone = "542948450880"; // Sin caracteres especiales
