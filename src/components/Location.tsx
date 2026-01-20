@@ -21,7 +21,7 @@ const Location = () => {
               </span>
             </div>
             <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-2">
-              Dónde celebraremos
+              ¿Dónde celebraremos?
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
               {address}

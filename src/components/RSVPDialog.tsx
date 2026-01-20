@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Check, Mail } from "lucide-react";
 import {
   Dialog,
@@ -14,15 +14,29 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 
+interface GuestInfo {
+  name: string;
+}
+
 const RSVPDialog = () => {
   const [open, setOpen] = useState(false);
+  const [guestName, setGuestName] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     attendance: "yes",
-    guests: "1",
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Obtener nombre del invitado desde localStorage
+    const guestInfo = localStorage.getItem("guestInfo");
+    if (guestInfo) {
+      const guest: GuestInfo = JSON.parse(guestInfo);
+      setGuestName(guest.name);
+      setFormData(prev => ({ ...prev, name: guest.name }));
+    }
+  }, [open]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,19 +49,31 @@ const RSVPDialog = () => {
     });
     localStorage.setItem("rsvps", JSON.stringify(existingRSVPs));
     
+    // Generar mensaje para WhatsApp
+    const attendanceText = formData.attendance === "yes" ? "¡Ahí voy a estar!" : "No voy a poder asistir a su boda";
+    const whatsappMessage = `Hola! Soy ${formData.name}.\n\n${attendanceText}${formData.message ? `\nTe recuerdo que para la comida no consumo: ${formData.message}` : ""}\n\n¡Muchas gracias!`;
+    // Codificar el mensaje para URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappPhone = "542948450880"; // Sin caracteres especiales
+    const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodedMessage}`;
+    
     setIsSubmitted(true);
     toast.success("¡Confirmación recibida! Gracias por responder.");
     
+    // Abrir WhatsApp después de un pequeño delay
     setTimeout(() => {
-      setOpen(false);
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        attendance: "yes",
-        guests: "1",
-        message: "",
-      });
-    }, 2000);
+      window.open(whatsappUrl, "_blank");
+      
+      setTimeout(() => {
+        setOpen(false);
+        setIsSubmitted(false);
+        setFormData({
+          name: "",
+          attendance: "yes",
+          message: "",
+        });
+      }, 100);
+    }, 150);
   };
 
   return (
@@ -64,7 +90,7 @@ const RSVPDialog = () => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="font-playfair text-2xl">
-            RSVP
+            CONFIRMACIÓN
           </DialogTitle>
           <DialogDescription>
             Por favor, confirma tu asistencia a nuestra boda
@@ -74,14 +100,10 @@ const RSVPDialog = () => {
         {!isSubmitted ? (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Nombre completo</Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="Tu nombre"
-                required
-              />
+              <Label>Nombre</Label>
+              <div className="p-3 bg-muted rounded-md text-foreground font-medium">
+                {guestName || "Cargando..."}
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -105,27 +127,13 @@ const RSVPDialog = () => {
               </RadioGroup>
             </div>
 
-            {formData.attendance === "yes" && (
-              <div className="space-y-2">
-                <Label htmlFor="guests">Número de invitados</Label>
-                <Input
-                  id="guests"
-                  type="number"
-                  min="1"
-                  max="10"
-                  value={formData.guests}
-                  onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
-                />
-              </div>
-            )}
-
             <div className="space-y-2">
-              <Label htmlFor="message">Mensaje (¡Nombra quienes!)</Label>
+              <Label htmlFor="message">¿Tenés alguna restricción alimentaria? Contanos qué no podes comer</Label>
               <Input
                 id="message"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Deja un mensaje para los novios"
+                placeholder="Ejemplo: Carne, TACC, lácteos..."
               />
             </div>
 
