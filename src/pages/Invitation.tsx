@@ -56,7 +56,7 @@ const Invitation = () => {
 
           <div className="flex items-center justify-center gap-3 text-lg md:text-xl mb-8">
             <Calendar className="w-5 h-5 text-wedding-gold" />
-            <time className="font-medium">15 de Diciembre, 2026</time>
+            <time className="font-medium">15 de Diciembre, 2027</time>
           </div>
 
           {guest.message && (
@@ -97,7 +97,7 @@ const Invitation = () => {
               Confirma tu asistencia
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              Tu presencia es el mejor regalo. Por favor, háznoslo saber antes del 1 de noviembre de 2026.
+              Tu presencia es el mejor regalo. Por favor, háznoslo saber antes del 1 de noviembre de 2027.
             </p>
             <RSVPDialog />
           </div>
@@ -121,7 +121,7 @@ const Invitation = () => {
             Nos encantaría compartir este día especial contigo
           </p>
           <p className="text-xs text-muted-foreground mt-4">
-            © 2026 Melina & Santiago
+            © 2027 Melina & Santiago
           </p>
         </div>
       </footer>
