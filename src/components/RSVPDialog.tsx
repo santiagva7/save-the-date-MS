@@ -13,14 +13,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
+import CardPrice from "./CardPrice";
 
 interface GuestInfo {
   name: string;
+  price?: number;
 }
 
 const RSVPDialog = () => {
   const [open, setOpen] = useState(false);
   const [guestName, setGuestName] = useState("");
+  const [guestPrice, setGuestPrice] = useState<number | undefined>();
   const [formData, setFormData] = useState({
     name: "",
     attendance: "yes",
@@ -34,6 +37,7 @@ const RSVPDialog = () => {
     if (guestInfo) {
       const guest: GuestInfo = JSON.parse(guestInfo);
       setGuestName(guest.name);
+      setGuestPrice(guest.price);
       setFormData(prev => ({ ...prev, name: guest.name }));
     }
   }, [open]);
@@ -50,8 +54,8 @@ const RSVPDialog = () => {
     localStorage.setItem("rsvps", JSON.stringify(existingRSVPs));
     
     // Generar mensaje para WhatsApp
-    const attendanceText = formData.attendance === "yes" ? "¡Ahí voy a estar!" : "No voy a poder asistir a su boda";
-    const whatsappMessage = `Hola! Soy ${formData.name}.\n\n${attendanceText}${formData.message ? `\nTe recuerdo que para la comida no consumo: ${formData.message}` : ""}\n\n¡Muchas gracias!`;
+    const attendanceText = formData.attendance === "yes" ? "Gracias por la invitación, ahí voy a estar" : "No voy a poder asistir a su boda";
+    const whatsappMessage = `Hola Santi, soy ${formData.name}.\n\n${attendanceText}${formData.message ? `\nTe recuerdo que en la comida no consumo: ${formData.message}` : ""}\n\n¡Muchas gracias!`;
     // Codificar el mensaje para URL
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappPhone = "542948450880"; // Sin caracteres especiales
@@ -106,6 +110,8 @@ const RSVPDialog = () => {
               </div>
             </div>
 
+            {guestPrice && <CardPrice price={guestPrice} currency="USD" />}
+
             <div className="space-y-2">
               <Label>¿Asistirás?</Label>
               <RadioGroup
@@ -135,6 +141,9 @@ const RSVPDialog = () => {
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Ejemplo: Carne, TACC, lácteos..."
               />
+            </div>
+            <div>
+                <p className="font-medium text-foreground mb-1">Por favor adjunta tu comprobante junto con el mensaje de asistencia </p>
             </div>
 
             <Button

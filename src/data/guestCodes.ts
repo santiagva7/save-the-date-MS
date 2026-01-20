@@ -2,12 +2,7 @@ export interface GuestInfo {
   code: string;
   name: string;
   message?: string;
-}
-
-export interface GuestInfo {
-  code: string;
-  name: string;
-  message?: string;
+  price?: number;
 }
 
 export const guestCodes: GuestInfo[] = [
@@ -287,7 +282,8 @@ export const guestCodes: GuestInfo[] = [
   {
     code: "NAHC2027",
     name: "Nahuel Capel",
-    message: "Querido Nahuel, esperamos contar con tu presencia."
+    message: "Querido Nahuel, esperamos contar con tu presencia.",
+    price: 20
   },
   {
     code: "DAMC2027",
@@ -312,7 +308,8 @@ export const guestCodes: GuestInfo[] = [
   {
     code: "MATC2027",
     name: "Matias Capel",
-    message: "Querido Mati, esperamos que puedas acompañarnos."
+    message: "Querido Mati, esperamos que puedas acompañarnos.",
+    price: 20
   },
   {
     code: "TOMC2027",
