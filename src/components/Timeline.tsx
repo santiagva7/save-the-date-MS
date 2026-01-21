@@ -15,18 +15,7 @@ const Timeline = () => {
       location: "Iglesia Central",
       description: "Comienza la ceremonia religiosa"
     },
-    {
-      time: "20:00",
-      title: "Fotos Oficiales",
-      location: "Jardín del Venue",
-      description: "Sesión de fotos con la pareja y familias"
-    },
-    {
-      time: "20:30",
-      title: "Recepción",
-      location: "Salón Principal",
-      description: "Bienvenida, cócteles y aperitivos"
-    },
+   
     {
       time: "21:00",
       title: "Cena",
@@ -35,9 +24,9 @@ const Timeline = () => {
     },
     {
       time: "22:30",
-      title: "Brindis y Baile",
+      title: "Brindis y juegos",
       location: "Salón Principal",
-      description: "Brindis especial y apertura de pista de baile"
+      description: "Brindis especial y actividades"
     }
   ];
 
