@@ -99,7 +99,7 @@ const RSVPDialog = () => {
           Confirmar asistencia
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-playfair text-2xl">
             CONFIRMACIÓN
@@ -110,7 +110,7 @@ const RSVPDialog = () => {
         </DialogHeader>
 
         {!isSubmitted ? (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 pb-4">
             <div className="space-y-2">
               <Label>Nombre</Label>
               <div className="p-3 bg-muted rounded-md text-foreground font-medium">
