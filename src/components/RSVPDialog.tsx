@@ -18,12 +18,14 @@ import CardPrice from "./CardPrice";
 interface GuestInfo {
   name: string;
   price?: number;
+  help?: string;
 }
 
 const RSVPDialog = () => {
   const [open, setOpen] = useState(false);
   const [guestName, setGuestName] = useState("");
   const [guestPrice, setGuestPrice] = useState<number | undefined>();
+  const [guestHelp, setGuestHelp] = useState<string | undefined>();
   const [formData, setFormData] = useState({
     name: "",
     attendance: "yes",
@@ -38,6 +40,7 @@ const RSVPDialog = () => {
       const guest: GuestInfo = JSON.parse(guestInfo);
       setGuestName(guest.name);
       setGuestPrice(guest.price);
+      setGuestHelp(guest.help);
       setFormData(prev => ({ ...prev, name: guest.name }));
     }
   }, [open]);
@@ -150,7 +153,14 @@ const RSVPDialog = () => {
                 placeholder="Ejemplo: Carne, TACC, lácteos..."
               />
             </div>
-             {guestPrice && (
+
+            {guestHelp && (
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-sm text-blue-900">{guestHelp}</p>
+              </div>
+            )}
+
+            {guestPrice && (
               <div>
                 <p className="font-medium text-foreground mb-1">Por favor adjunta tu comprobante junto con el mensaje de asistencia </p>
               </div>
