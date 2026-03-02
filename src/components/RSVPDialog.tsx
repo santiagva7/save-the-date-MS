@@ -150,9 +150,11 @@ const RSVPDialog = () => {
                 placeholder="Ejemplo: Carne, TACC, lácteos..."
               />
             </div>
-            <div>
+             {guestPrice && (
+              <div>
                 <p className="font-medium text-foreground mb-1">Por favor adjunta tu comprobante junto con el mensaje de asistencia </p>
-            </div>
+              </div>
+            )}
 
             <Button
               type="submit"

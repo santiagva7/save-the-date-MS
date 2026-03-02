@@ -8,7 +8,7 @@ import Location from "@/components/Location";
 import Dresscode from "@/components/Dresscode";
 import RSVPDialog from "@/components/RSVPDialog";
 import weddingHero from "@/assets/wedding-hero.jpg";
-import couplePhoto4 from "@/assets/couple-photo-4.jpg";
+import backTruck from "@/assets/back-truck.jpg";
 import GiftRegistry from "@/components/GiftRegistry";
 
 
@@ -114,7 +114,7 @@ const Invitation = () => {
           {/* Image - 1/3 */}
           <div className="hidden md:block">
             <img 
-              src={couplePhoto4} 
+              src={backTruck} 
               alt="Couple photo" 
               className="w-full h-full object-cover rounded-r-2xl"
             />

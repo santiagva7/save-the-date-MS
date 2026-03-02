@@ -1,6 +1,6 @@
 import { MapPin, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import couplePhoto2 from "@/assets/couple-photo-2.jpg";
+import upUp from "@/assets/upup.jpg";
 
 const Location = () => {
   const address = "Argentina";
@@ -64,7 +64,7 @@ const Location = () => {
         {/* Image - 1/3 */}
         <div className="hidden md:block">
           <img 
-            src={couplePhoto2} 
+            src={upUp} 
             alt="Couple photo" 
             className="w-full h-full object-cover rounded-r-2xl"
           />

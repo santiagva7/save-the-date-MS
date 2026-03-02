@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Calendar } from "lucide-react";
-import couplePhoto1 from "@/assets/couple-photo-1.jpg";
+import handsBack from "@/assets/hands_back.jpg";
 
 interface TimeLeft {
   days: number;
@@ -56,7 +56,7 @@ const Countdown = () => {
         {/* Image - 1/3 */}
         <div className="hidden md:block">
           <img 
-            src={couplePhoto1} 
+            src={handsBack} 
             alt="Couple photo" 
             className="w-full h-full object-cover rounded-l-2xl"
           />

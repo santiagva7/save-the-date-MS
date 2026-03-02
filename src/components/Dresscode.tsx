@@ -1,6 +1,6 @@
 import { Shirt, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import couplePhoto3 from "@/assets/couple-photo-3.jpg";
+import extendedKiss from "@/assets/extended-hand-kiss.jpg";
 
 const Dresscode = () => {
   const pinterestUrl = "https://www.pinterest.com/search/pins/?q=formal%20wedding%20attire";
@@ -11,7 +11,7 @@ const Dresscode = () => {
         {/* Image - 1/3 */}
         <div className="hidden md:block">
           <img 
-            src={couplePhoto3} 
+            src={extendedKiss} 
             alt="Couple photo" 
             className="w-full h-full object-cover rounded-l-2xl"
           />
