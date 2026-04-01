@@ -154,9 +154,9 @@ const InvitationPreview = ({ guest, theme }: InvitationPreviewProps) => {
           className="w-full py-12 px-4"
           style={{ backgroundColor: `${theme.colors.secondary}10` }}
         >
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch w-full">
             {/* Content - 2/3 */}
-            <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12 text-center">
+            <div className="w-full md:col-span-2 flex flex-col justify-center p-8 md:p-12 text-center">
               <h2 
                 className="text-3xl md:text-4xl font-bold mb-4"
                 style={{ fontFamily: theme.fonts.heading, color: theme.colors.text }}
