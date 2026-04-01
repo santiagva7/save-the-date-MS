@@ -30,6 +30,7 @@ const RSVPDialog = () => {
     name: "",
     attendance: "yes",
     message: "",
+    songRequest: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -58,7 +59,7 @@ const RSVPDialog = () => {
     
     // Generar mensaje para WhatsApp
     const attendanceText = formData.attendance === "yes" ? "Gracias por la invitación, ahí voy a estar" : "No voy a poder asistir a su boda";
-    let whatsappMessage = `Hola Santi, soy ${formData.name}.\n\n${attendanceText}${formData.message ? `\n\nTe recuerdo que en la comida no consumo: ${formData.message}` : ""}`;
+    let whatsappMessage = `Hola Santi, soy ${formData.name}.\n\n${attendanceText}${formData.message ? `\n\nTe recuerdo que en la comida no consumo: ${formData.message}` : ""}${formData.songRequest ? `\n\nMe gustaría que en la boda esté: ${formData.songRequest}` : ""}`;
     
     // Si tiene que pagar tarjeta, agregar el texto del comprobante
     if (guestPrice) {
@@ -86,6 +87,7 @@ const RSVPDialog = () => {
           name: "",
           attendance: "yes",
           message: "",
+          songRequest: "",
         });
       }, 100);
     }, 150);
@@ -151,6 +153,16 @@ const RSVPDialog = () => {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Ejemplo: Carne, TACC, lácteos..."
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="songRequest">¿Qué canciones no pueden faltar en la fiesta? Máximo 2</Label>
+              <Input
+                id="songRequest"
+                value={formData.songRequest}
+                onChange={(e) => setFormData({ ...formData, songRequest: e.target.value })}
+                placeholder="Ejemplo: Bohemian Rhapsody - Queen"
               />
             </div>
 

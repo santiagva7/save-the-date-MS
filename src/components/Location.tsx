@@ -1,34 +1,51 @@
 import { MapPin, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import upUp from "@/assets/upup.jpg";
+import { DesignTheme } from "@/lib/designThemes";
 
-const Location = () => {
-  const address = "Pergamino, Buenos Aires, Argentina";
-  const coordinates = { lat: -33.8644359, lng: -60.60000685847173 };
+interface LocationProps {
+  theme?: DesignTheme;
+}
+
+const Location = ({ theme }: LocationProps) => {
+  const address = "Salón Sanmarinense, Buenos Aires, Argentina";
+  const coordinates = { lat: -33.9120039, lng: -60.57925339999999 };
   const googleMapsUrl = `https://www.google.com/maps?q=${coordinates.lat},${coordinates.lng}`;
-  const googleMapsEmbed = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26503.83081248414!2d-60.60000685847173!3d-33.8644359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b9cbc64d805939%3A0x38d6494e122b0ec!2sQuinta%20Multieventos!5e0!3m2!1ses!2sar!4v1772463664579!5m2!1ses!2sar";
+  const googleMapsEmbed = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.13193094809!2d-60.57925339999999!3d-33.9120039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b9b5353df98d5d%3A0x3ed7ebfe051e4e71!2sSalon%20Sanmarinense!5e0!3m2!1ses!2sar!4v1775074850105!5m2!1ses!2sar";
 
   return (
-    <div className="py-12 px-4 bg-secondary/30">
+    <div className="py-12 px-4" style={{ backgroundColor: `${theme?.colors.secondary}20` }}>
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">
         {/* Content - 2/3 */}
         <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-4">
-              <MapPin className="w-5 h-5 text-wedding-gold" />
-              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+              <MapPin className="w-5 h-5" style={{ color: theme?.colors.primary }} />
+              <span 
+                className="text-sm font-medium uppercase tracking-wider"
+                style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+              >
                 Ubicación
               </span>
             </div>
-            <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-2">
+            <h2 
+              className="text-3xl md:text-4xl font-bold mb-2"
+              style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
+            >
               ¿Dónde celebraremos?
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
+            <p 
+              className="max-w-xl mx-auto"
+              style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+            >
               {address}
             </p>
           </div>
 
-          <div className="bg-card rounded-2xl overflow-hidden shadow-[var(--shadow-elegant)]">
+          <div 
+            className="rounded-2xl overflow-hidden shadow-lg"
+            style={{ backgroundColor: theme?.colors.light }}
+          >
             <div className="aspect-video w-full">
               <iframe
                 src={googleMapsEmbed}
@@ -45,13 +62,16 @@ const Location = () => {
             <div className="p-6">
               <Button
                 asChild
-                className="w-full bg-wedding-gold hover:bg-wedding-gold/90 text-foreground font-medium"
+                style={{ 
+                  backgroundColor: theme?.colors.primary,
+                  color: theme?.colors.text
+                }}
               >
                 <a
                   href={googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2"
+                  className="inline-flex items-center justify-center gap-2 w-full font-medium"
                 >
                   <Navigation className="w-4 h-4" />
                   Cómo llegar

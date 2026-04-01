@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Calendar, Heart } from "lucide-react";
+import { Calendar, Heart, Clock } from "lucide-react";
 import { GuestInfo } from "@/data/guestCodes";
 import Countdown from "@/components/Countdown";
 import Timeline from "@/components/Timeline";
@@ -8,6 +8,7 @@ import Location from "@/components/Location";
 import Dresscode from "@/components/Dresscode";
 import RSVPDialog from "@/components/RSVPDialog";
 import weddingHero from "@/assets/wedding-hero.jpg";
+import weddingHeroMb from "@/assets/wedding-hero-mb.jpg";
 import backTruck from "@/assets/back-truck.jpg";
 import GiftRegistry from "@/components/GiftRegistry";
 
@@ -15,6 +16,16 @@ import GiftRegistry from "@/components/GiftRegistry";
 const Invitation = () => {
   const navigate = useNavigate();
   const [guest, setGuest] = useState<GuestInfo | null>(null);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const guestInfoStr = localStorage.getItem("guestInfo");
@@ -35,12 +46,14 @@ const Invitation = () => {
     return null;
   }
 
+  const backgroundImage = isMobile ? weddingHeroMb : weddingHero;
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section
         className="relative h-screen flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: `url(${weddingHero})` }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/80" />
         
@@ -57,9 +70,38 @@ const Invitation = () => {
             </p>
           </div>
 
-          <div className="flex items-center justify-center gap-3 text-lg md:text-xl mb-8">
-            <Calendar className="w-5 h-5 text-wedding-gold" />
-            <time className="font-medium">10 de Enero, 2027</time>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mb-8">
+            <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-wedding-gold/30">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Calendar className="w-4 h-4 text-wedding-gold" />
+                  <div className="text-left">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">Civil</p>
+                    <time className="font-medium text-sm md:text-base">8 de Enero, 2027</time>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 ml-6">
+                  <Clock className="w-4 h-4 text-wedding-gold" />
+                  <time className="text-sm text-muted-foreground">10:00</time>
+                </div>
+              </div>
+            </div>
+            <div className="hidden sm:block text-wedding-gold/50">•</div>
+            <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-wedding-gold/30">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Calendar className="w-4 h-4 text-wedding-gold" />
+                  <div className="text-left">
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">Ceremonia</p>
+                    <time className="font-medium text-sm md:text-base">10 de Enero, 2027</time>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 ml-6">
+                  <Clock className="w-4 h-4 text-wedding-gold" />
+                  <time className="text-sm text-muted-foreground">19:30</time>
+                </div>
+              </div>
+            </div>
           </div>
 
           {guest.message && (
@@ -80,10 +122,18 @@ const Invitation = () => {
       <section className="bg-gradient-to-b from-background to-secondary/20">
         <Countdown />
       </section>
-          {/* Timeline Section */}
-      <section className="bg-gradient-to-b from-background to-secondary/20">
-        <Timeline />
+      
+      {/* Timeline Section */}
+      <section 
+        className="bg-gradient-to-b from-background to-secondary/20 bg-cover bg-center relative"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/80" />
+        <div className="relative z-10">
+          <Timeline />
+        </div>
       </section> 
+      
       {/* Location Section */}
       <section>
         <Location />
@@ -93,10 +143,18 @@ const Invitation = () => {
       <section className="bg-gradient-to-b from-secondary/20 to-background">
         <Dresscode />
       </section>
-    {/* Dresscode Section */}
-      <section className="bg-gradient-to-b from-secondary/20 to-background">
-        <GiftRegistry />
+      
+      {/* Gift Registry Section */}
+      <section 
+        className="bg-gradient-to-b from-secondary/20 to-background bg-cover bg-center relative"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/80" />
+        <div className="relative z-10">
+          <GiftRegistry />
+        </div>
       </section>
+      
       {/* RSVP Section */}
       <section className="py-12 px-4 bg-accent/30">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">

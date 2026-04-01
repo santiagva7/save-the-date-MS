@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Calendar } from "lucide-react";
 import handsBack from "@/assets/hands_back.jpg";
+import { DesignTheme } from "@/lib/designThemes";
 
 interface TimeLeft {
   days: number;
@@ -9,7 +10,11 @@ interface TimeLeft {
   seconds: number;
 }
 
-const Countdown = () => {
+interface CountdownProps {
+  theme?: DesignTheme;
+}
+
+const Countdown = ({ theme }: CountdownProps) => {
   const weddingDate = new Date("2027-01-10T18:00:00");
   
   const calculateTimeLeft = (): TimeLeft => {
@@ -39,19 +44,28 @@ const Countdown = () => {
 
   const TimeUnit = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center">
-      <div className="bg-card rounded-xl shadow-[var(--shadow-soft)] p-4 mb-2 min-w-[70px] md:min-w-[90px]">
-        <span className="font-playfair text-3xl md:text-4xl font-bold text-wedding-gold">
+      <div 
+        className="rounded-xl shadow-md p-4 mb-2 min-w-[70px] md:min-w-[90px]"
+        style={{ backgroundColor: theme?.colors.light || '#faf8f3' }}
+      >
+        <span 
+          className="font-bold text-3xl md:text-4xl"
+          style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.primary || '#bb9457' }}
+        >
           {value.toString().padStart(2, "0")}
         </span>
       </div>
-      <span className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider">
+      <span 
+        className="text-xs md:text-sm uppercase tracking-wider"
+        style={{ color: theme?.colors.accent || '#99582a', fontFamily: theme?.fonts.body }}
+      >
         {label}
       </span>
     </div>
   );
 
   return (
-    <div className="py-12 px-4">
+    <div className="py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">
         {/* Image - 1/3 */}
         <div className="hidden md:block">
@@ -63,15 +77,24 @@ const Countdown = () => {
         </div>
         
         {/* Content - 2/3 */}
-        <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12">
+        <div 
+          className="md:col-span-2 flex flex-col justify-center p-8 md:p-12"
+          style={{ backgroundColor: theme?.colors.background }}
+        >
           <div className="text-center">
             <div className="inline-flex items-center gap-2 mb-4">
-              <Calendar className="w-5 h-5 text-wedding-gold" />
-              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+              <Calendar className="w-5 h-5" style={{ color: theme?.colors.primary }} />
+              <span 
+                className="text-sm font-medium uppercase tracking-wider"
+                style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+              >
                 Cuenta regresiva
               </span>
             </div>
-            <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-8">
+            <h2 
+              className="text-3xl md:text-4xl font-bold mb-8"
+              style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
+            >
               Faltan...
             </h2>
 

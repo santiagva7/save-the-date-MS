@@ -1,4 +1,5 @@
 import { Clock, MapPin } from "lucide-react";
+import { DesignTheme } from "@/lib/designThemes";
 
 interface TimelineEvent {
   time: string;
@@ -7,7 +8,11 @@ interface TimelineEvent {
   description?: string;
 }
 
-const Timeline = () => {
+interface TimelineProps {
+  theme?: DesignTheme;
+}
+
+const Timeline = ({ theme }: TimelineProps) => {
   const events: TimelineEvent[] = [
     {
       time: "19:00",
@@ -31,20 +36,29 @@ const Timeline = () => {
   ];
 
   return (
-    <div className="py-12 px-4 bg-white">
+    <div className="py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Clock className="w-5 h-5 text-wedding-gold" />
-            <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+            <Clock className="w-5 h-5" style={{ color: theme?.colors.primary }} />
+            <span 
+              className="text-sm font-medium uppercase tracking-wider"
+              style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+            >
               Cronograma
             </span>
           </div>
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-3">
+          <h2 
+            className="text-4xl md:text-5xl font-bold mb-3"
+            style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
+          >
             Horario del Evento
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p 
+            className="max-w-xl mx-auto"
+            style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+          >
             Conoce la agenda de nuestra celebración
           </p>
         </div>
@@ -52,7 +66,12 @@ const Timeline = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Línea vertical central */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-wedding-gold via-wedding-gold to-transparent"></div>
+          <div 
+            className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b"
+            style={{ 
+              backgroundImage: `linear-gradient(to bottom, ${theme?.colors.primary}, ${theme?.colors.primary}cc, transparent)` 
+            }}
+          ></div>
 
           {/* Events */}
           <div className="space-y-8">
@@ -61,25 +80,40 @@ const Timeline = () => {
                 <div className={`flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
                   {/* Content */}
                   <div className={`w-1/2 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
-                    <div className="bg-card rounded-lg p-6 shadow-sm border border-wedding-gold/20 hover:border-wedding-gold/50 hover:shadow-md transition-all duration-300">
+                    <div 
+                      className="rounded-lg p-6 shadow-sm border hover:shadow-md transition-all duration-300"
+                      style={{ 
+                        backgroundColor: theme?.colors.light,
+                        borderColor: `${theme?.colors.primary}33`
+                      }}
+                    >
                       <div className="flex items-start gap-2 mb-2">
-                        <Clock className="w-4 h-4 text-wedding-gold flex-shrink-0 mt-0.5" />
-                        <span className="font-playfair text-2xl font-bold text-wedding-gold">
+                        <Clock className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: theme?.colors.primary }} />
+                        <span 
+                          className="text-2xl font-bold"
+                          style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.primary }}
+                        >
                           {event.time}
                         </span>
                       </div>
                       
-                      <h3 className="font-playfair text-xl font-bold mb-2">
+                      <h3 
+                        className="text-xl font-bold mb-2"
+                        style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
+                      >
                         {event.title}
                       </h3>
                       
-                      <div className="flex items-center gap-2 mb-3 text-sm text-muted-foreground">
-                        <MapPin className="w-4 h-4 text-wedding-gold/60" />
+                      <div className="flex items-center gap-2 mb-3 text-sm" style={{ color: theme?.colors.accent }}>
+                        <MapPin className="w-4 h-4" style={{ opacity: 0.6 }} />
                         {event.location}
                       </div>
 
                       {event.description && (
-                        <p className="text-sm text-muted-foreground">
+                        <p 
+                          className="text-sm"
+                          style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+                        >
                           {event.description}
                         </p>
                       )}
@@ -88,7 +122,13 @@ const Timeline = () => {
 
                   {/* Center dot */}
                   <div className="w-0 flex justify-center relative">
-                    <div className="w-4 h-4 bg-wedding-gold rounded-full border-4 border-white shadow-md"></div>
+                    <div 
+                      className="w-4 h-4 rounded-full border-4 shadow-md"
+                      style={{ 
+                        backgroundColor: theme?.colors.primary,
+                        borderColor: theme?.colors.background || 'white'
+                      }}
+                    ></div>
                   </div>
 
                   {/* Empty space */}
