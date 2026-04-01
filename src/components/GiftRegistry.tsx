@@ -36,7 +36,7 @@ const GiftRegistry = () => {
   };
 
   return (
-    <div className="py-12 px-4 bg-gradient-to-b from-white to-wedding-gold/5">
+    <div className="w-full py-12 px-4 bg-gradient-to-b from-white to-wedding-gold/5">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

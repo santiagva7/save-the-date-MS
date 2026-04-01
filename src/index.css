@@ -111,7 +111,12 @@ All colors MUST be HSL.
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border box-border;
+  }
+
+  html, body, #root {
+    width: 100%;
+    overflow-x: hidden;
   }
 
   body {

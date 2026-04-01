@@ -156,8 +156,8 @@ const Invitation = () => {
       </section>
       
       {/* RSVP Section */}
-      <section className="py-12 px-4 bg-accent/30">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">
+      <section className="w-full py-12 px-4 bg-accent/30">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
           {/* Content - 2/3 */}
           <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12 text-center">
             <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
@@ -181,7 +181,7 @@ const Invitation = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 text-center bg-secondary/30">
+      <footer className="w-full py-12 px-4 text-center bg-secondary/30">
         <div className="max-w-4xl mx-auto">
           <Heart className="w-8 h-8 mx-auto mb-4 text-wedding-gold" />
           <p className="text-sm text-muted-foreground">

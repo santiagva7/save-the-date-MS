@@ -151,10 +151,10 @@ const InvitationPreview = ({ guest, theme }: InvitationPreviewProps) => {
 
         {/* RSVP Section */}
         <section 
-          className="py-12 px-4"
+          className="w-full py-12 px-4"
           style={{ backgroundColor: `${theme.colors.secondary}10` }}
         >
-          <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
             {/* Content - 2/3 */}
             <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12 text-center">
               <h2 
@@ -185,7 +185,7 @@ const InvitationPreview = ({ guest, theme }: InvitationPreviewProps) => {
 
         {/* Footer */}
         <footer 
-          className="py-12 px-4 text-center"
+          className="w-full py-12 px-4 text-center"
           style={{ backgroundColor: `${theme.colors.secondary}20` }}
         >
           <div className="max-w-4xl mx-auto">

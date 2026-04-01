@@ -65,8 +65,8 @@ const Countdown = ({ theme }: CountdownProps) => {
   );
 
   return (
-    <div className="py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">
+    <div className="w-full py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
         {/* Image - 1/3 */}
         <div className="hidden md:block">
           <img 

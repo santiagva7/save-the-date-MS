@@ -36,7 +36,7 @@ const Timeline = ({ theme }: TimelineProps) => {
   ];
 
   return (
-    <div className="py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
+    <div className="w-full py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

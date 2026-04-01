@@ -14,8 +14,8 @@ const Location = ({ theme }: LocationProps) => {
   const googleMapsEmbed = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.13193094809!2d-60.57925339999999!3d-33.9120039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b9b5353df98d5d%3A0x3ed7ebfe051e4e71!2sSalon%20Sanmarinense!5e0!3m2!1ses!2sar!4v1775074850105!5m2!1ses!2sar";
 
   return (
-    <div className="py-12 px-4" style={{ backgroundColor: `${theme?.colors.secondary}20` }}>
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">
+    <div className="w-full py-12 px-4" style={{ backgroundColor: `${theme?.colors.secondary}20` }}>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
         {/* Content - 2/3 */}
         <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12">
           <div className="text-center mb-8">

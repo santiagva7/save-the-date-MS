@@ -6,8 +6,8 @@ const Dresscode = () => {
   const pinterestUrl = "https://www.pinterest.com/search/pins/?q=formal%20wedding%20attire";
 
   return (
-    <div className="py-12 px-4">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-0 items-stretch">
+    <div className="w-full py-12 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
         {/* Image - 1/3 */}
         <div className="hidden md:block">
           <img 
