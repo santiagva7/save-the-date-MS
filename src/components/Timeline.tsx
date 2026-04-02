@@ -15,23 +15,23 @@ interface TimelineProps {
 const Timeline = ({ theme }: TimelineProps) => {
   const events: TimelineEvent[] = [
     {
-      time: "19:00",
-      title: "Ceremonia",
-      location: "Iglesia Central",
+      time: "20:00",
+      title: "Recepción",
+      location: "Patio del salón",
       description: "Comienza la ceremonia religiosa"
     },
    
     {
-      time: "21:00",
+      time: "22:00",
       title: "Cena",
       location: "Comedor",
       description: "Cena servida a la mesa"
     },
     {
-      time: "22:30",
+      time: "23:30",
       title: "Brindis y juegos",
       location: "Salón Principal",
-      description: "Brindis especial y actividades"
+      description: "Brindis especial y actividades. ¡Barra abierta!"
     }
   ];
 
@@ -40,15 +40,6 @@ const Timeline = ({ theme }: TimelineProps) => {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <Clock className="w-5 h-5" style={{ color: theme?.colors.primary }} />
-            <span 
-              className="text-sm font-medium uppercase tracking-wider"
-              style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
-            >
-              Cronograma
-            </span>
-          </div>
           <h2 
             className="text-4xl md:text-5xl font-bold mb-3"
             style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
