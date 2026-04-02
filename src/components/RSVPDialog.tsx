@@ -162,7 +162,7 @@ const RSVPDialog = () => {
                 id="songRequest"
                 value={formData.songRequest}
                 onChange={(e) => setFormData({ ...formData, songRequest: e.target.value })}
-                placeholder="Ejemplo: Bohemian Rhapsody - Queen"
+                placeholder="Ejemplo: Cae el sol - Airbag"
               />
             </div>
 

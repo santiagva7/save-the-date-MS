@@ -31,10 +31,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-wedding-cream via-wedding-pink to-wedding-beige p-4">
+    <div style={{ backgroundColor: '#E6D6BE' }} className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8 animate-fade-in">
-          <Heart className="w-16 h-16 mx-auto mb-4 text-wedding-gold" />
+          <Heart className="w-16 h-16 mx-auto mb-4" style={{ color: '#D4AF37' }} />
           <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-2">
             Melina & Santiago
           </h1>
@@ -43,10 +43,10 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="bg-card rounded-2xl shadow-[var(--shadow-elegant)] p-8 animate-scale-in">
+        <div className="rounded-2xl shadow-[var(--shadow-elegant)] p-8 animate-scale-in border" style={{ backgroundColor: '#FAF6F0', borderColor: '#D8CFC4' }}>
           <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent mb-3">
-              <Lock className="w-6 h-6 text-accent-foreground" />
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-3" style={{ backgroundColor: '#EFE6DC' }}>
+              <Lock className="w-6 h-6" style={{ color: '#8A7F73' }} />
             </div>
             <h2 className="font-playfair text-2xl font-semibold mb-2">
               Ingresa tu código
@@ -63,7 +63,8 @@ const Login = () => {
                 placeholder="Código de invitación"
                 value={code}
                 onChange={(e) => setCode(e.target.value.toUpperCase())}
-                className="text-center text-lg tracking-wider font-medium"
+                className="text-center text-lg tracking-wider font-medium placeholder-shown:"
+                style={{ color: '#333' }}
                 maxLength={20}
                 required
               />
@@ -71,14 +72,17 @@ const Login = () => {
 
             <Button
               type="submit"
-              className="w-full bg-wedding-gold hover:bg-wedding-gold/90 text-foreground font-medium"
+              className="w-full text-foreground font-medium transition-colors"
+              style={{ backgroundColor: '#D4AF37' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C19B2E'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#D4AF37'}
               disabled={isLoading}
             >
               {isLoading ? "Verificando..." : "Acceder"}
             </Button>
           </form>
 
-          <p className="text-xs text-center text-muted-foreground mt-6">
+          <p className="text-xs text-center mt-6" style={{ color: '#7A6A5A' }}>
             ¿No tienes tu código? Contacta con los novios
           </p>
         </div>
