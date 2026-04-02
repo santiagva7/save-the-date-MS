@@ -104,18 +104,18 @@ const RSVPDialog = () => {
           Confirmar asistencia
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="font-playfair text-2xl">
+      <DialogContent className="sm:max-w-md w-full max-h-[90vh] overflow-y-auto flex flex-col items-center justify-center">
+        <DialogHeader className="w-full">
+          <DialogTitle className="font-playfair text-2xl text-center">
             CONFIRMACIÓN
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-center">
             Por favor, confirma tu asistencia a nuestra boda
           </DialogDescription>
         </DialogHeader>
 
         {!isSubmitted ? (
-          <form onSubmit={handleSubmit} className="space-y-4 pb-4">
+          <form onSubmit={handleSubmit} className="space-y-4 pb-4 w-full">
             <div className="space-y-2">
               <Label>Nombre</Label>
               <div className="p-3 bg-muted rounded-md text-foreground font-medium">

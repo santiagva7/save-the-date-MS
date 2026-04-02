@@ -15,79 +15,156 @@ const Location = ({ theme }: LocationProps) => {
 
   return (
     <div className="w-full py-12 px-4" style={{ backgroundColor: `${theme?.colors.secondary}20` }}>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-0 items-stretch">
-        {/* Content - 2/3 */}
-        <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <MapPin className="w-5 h-5" style={{ color: theme?.colors.primary }} />
-              <span 
-                className="text-sm font-medium uppercase tracking-wider"
+      <div className="max-w-7xl mx-auto">
+        {/* Mobile layout - Image on top */}
+        <div className="md:hidden flex flex-col gap-0">
+          <img 
+            src={upUp} 
+            alt="Couple photo" 
+            className="w-full h-80 object-cover rounded-t-2xl"
+          />
+          
+          {/* Content */}
+          <div className="flex flex-col justify-center p-8">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 mb-4 justify-center">
+                <MapPin className="w-5 h-5" style={{ color: theme?.colors.primary }} />
+                <span 
+                  className="text-sm font-medium uppercase tracking-wider"
+                  style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+                >
+                  Ubicación
+                </span>
+              </div>
+              <h2 
+                className="text-3xl font-bold mb-2"
+                style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
+              >
+                ¿Dónde celebraremos?
+              </h2>
+              <p 
+                className="max-w-xl mx-auto"
                 style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
               >
-                Ubicación
-              </span>
+                {address}
+              </p>
             </div>
-            <h2 
-              className="text-3xl md:text-4xl font-bold mb-2"
-              style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
-            >
-              ¿Dónde celebraremos?
-            </h2>
-            <p 
-              className="max-w-xl mx-auto"
-              style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
-            >
-              {address}
-            </p>
-          </div>
 
-          <div 
-            className="rounded-2xl overflow-hidden shadow-lg"
-            style={{ backgroundColor: theme?.colors.light }}
-          >
-            <div className="aspect-video w-full">
-              <iframe
-                src={googleMapsEmbed}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación de la boda"
-              ></iframe>
-            </div>
-            
-            <div className="p-6">
-              <Button
-                asChild
-                style={{ 
-                  backgroundColor: theme?.colors.primary,
-                  color: theme?.colors.text
-                }}
-              >
-                <a
-                  href={googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full font-medium"
+            <div 
+              className="rounded-2xl overflow-hidden shadow-lg"
+              style={{ backgroundColor: theme?.colors.light }}
+            >
+              <div className="aspect-video w-full">
+                <iframe
+                  src={googleMapsEmbed}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de la boda"
+                ></iframe>
+              </div>
+              
+              <div className="p-6">
+                <Button
+                  asChild
+                  style={{ 
+                    backgroundColor: theme?.colors.primary,
+                    color: theme?.colors.text
+                  }}
                 >
-                  <Navigation className="w-4 h-4" />
-                  Cómo llegar
-                </a>
-              </Button>
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full font-medium"
+                  >
+                    <Navigation className="w-4 h-4" />
+                    Cómo llegar
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Image - 1/3 */}
-        <div className="hidden md:block">
-          <img 
-            src={upUp} 
-            alt="Couple photo" 
-            className="w-full h-full object-cover rounded-r-2xl"
-          />
+        {/* Desktop layout - Image on right */}
+        <div className="hidden md:grid md:grid-cols-3 md:gap-0 md:items-stretch">
+          {/* Content - 2/3 */}
+          <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 mb-4 justify-center">
+                <MapPin className="w-5 h-5" style={{ color: theme?.colors.primary }} />
+                <span 
+                  className="text-sm font-medium uppercase tracking-wider"
+                  style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+                >
+                  Ubicación
+                </span>
+              </div>
+              <h2 
+                className="text-3xl md:text-4xl font-bold mb-2"
+                style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
+              >
+                ¿Dónde celebraremos?
+              </h2>
+              <p 
+                className="max-w-xl mx-auto"
+                style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+              >
+                {address}
+              </p>
+            </div>
+
+            <div 
+              className="rounded-2xl overflow-hidden shadow-lg"
+              style={{ backgroundColor: theme?.colors.light }}
+            >
+              <div className="aspect-video w-full">
+                <iframe
+                  src={googleMapsEmbed}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de la boda"
+                ></iframe>
+              </div>
+              
+              <div className="p-6">
+                <Button
+                  asChild
+                  style={{ 
+                    backgroundColor: theme?.colors.primary,
+                    color: theme?.colors.text
+                  }}
+                >
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full font-medium"
+                  >
+                    <Navigation className="w-4 h-4" />
+                    Cómo llegar
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Image - 1/3 */}
+          <div>
+            <img 
+              src={upUp} 
+              alt="Couple photo" 
+              className="w-full h-full object-cover rounded-r-2xl"
+            />
+          </div>
         </div>
       </div>
     </div>
