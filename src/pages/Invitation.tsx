@@ -6,11 +6,11 @@ import Countdown from "@/components/Countdown";
 import Timeline from "@/components/Timeline";
 import Location from "@/components/Location";
 import Dresscode from "@/components/Dresscode";
-import RSVPDialog from "@/components/RSVPDialog";
+import RSVPSection from "@/components/RSVPSection";
 import weddingHero from "@/assets/wedding-hero.jpg";
 import weddingHeroMb from "@/assets/wedding-hero-mb.jpg";
-import backTruck from "@/assets/back-truck.jpg";
 import GiftRegistry from "@/components/GiftRegistry";
+import FooterSection from "@/components/FooterSection";
 
 
 const Invitation = () => {
@@ -57,21 +57,21 @@ const Invitation = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/80" />
         
-        <div className="relative z-10 text-center px-4 animate-fade-in">
-          <Heart className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-6 text-wedding-gold" />
+        <div className="relative z-10 text-center px-4">
+          <Heart className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-6 text-wedding-gold animate-fade-in" />
           
-          <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold mb-4">
+          <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold mb-4 animate-slide-up">
             Melina & Santiago
           </h1>
           
-          <div className="inline-block mb-6">
+          <div className="inline-block mb-6 animate-slide-up-delay-200">
             <p className="text-xl md:text-2xl font-light tracking-[0.3em] uppercase text-muted-foreground">
               Save the Date
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mb-8">
-            <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-wedding-gold/30">
+            <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-wedding-gold/30 animate-slide-up-delay-400">
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-wedding-gold" />
@@ -87,7 +87,7 @@ const Invitation = () => {
               </div>
             </div>
             <div className="hidden sm:block text-wedding-gold/50">•</div>
-            <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-wedding-gold/30">
+            <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-wedding-gold/30 animate-slide-up-delay-400">
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-wedding-gold" />
@@ -155,64 +155,9 @@ const Invitation = () => {
         </div>
       </section>
       
-      {/* RSVP Section */}
-      <section className="w-full py-12 px-4 bg-accent/30">
-        <div className="max-w-7xl mx-auto">
-          {/* Mobile layout - Image on top */}
-          <div className="md:hidden flex flex-col gap-0">
-            <img 
-              src={backTruck} 
-              alt="Couple photo" 
-              className="w-full h-80 object-cover rounded-t-2xl"
-            />
-            <div className="w-full flex flex-col justify-center p-8 text-center">
-              <h2 className="font-playfair text-3xl font-bold mb-4">
-                Confirma tu asistencia
-              </h2>
-              <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                Nos encantaría contar con vos en esta celebración. Por favor, hacenos saber si vas a poder asistir.
-              </p>
-              <RSVPDialog />
-            </div>
-          </div>
+      <RSVPSection />
 
-          {/* Desktop layout - Image on right */}
-          <div className="hidden md:grid md:grid-cols-3 md:gap-0 md:items-stretch">
-            {/* Content - 2/3 */}
-            <div className="w-full md:col-span-2 flex flex-col justify-center p-8 md:p-12 text-center">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
-                Confirma tu asistencia
-              </h2>
-              <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                Nos encantaría contar con vos en esta celebración. Por favor, hacenos saber si vas a poder asistir.
-              </p>
-              <RSVPDialog />
-            </div>
-
-            {/* Image - 1/3 */}
-            <div>
-              <img 
-                src={backTruck} 
-                alt="Couple photo" 
-                className="w-full h-full object-cover rounded-r-2xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="w-full py-12 px-4 text-center bg-secondary/30">
-        <div className="max-w-4xl mx-auto">
-          <Heart className="w-8 h-8 mx-auto mb-4 text-wedding-gold" />
-          <p className="text-sm text-muted-foreground">
-            Nos encantaría compartir este día especial contigo
-          </p>
-          <p className="text-xs text-muted-foreground mt-4">
-            © 2027 Melina & Santiago
-          </p>
-        </div>
-      </footer>
+      <FooterSection />
     </div>
   );
 };

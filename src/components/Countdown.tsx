@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Calendar } from "lucide-react";
 import handsBack from "@/assets/hands_back.jpg";
 import { DesignTheme } from "@/lib/designThemes";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface TimeLeft {
   days: number;
@@ -64,21 +65,23 @@ const Countdown = ({ theme }: CountdownProps) => {
     </div>
   );
 
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <div className="w-full py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
+    <div ref={ref} className="w-full py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
       <div className="max-w-7xl mx-auto">
         {/* Mobile layout - Image on top */}
         <div className="md:hidden flex flex-col gap-0">
           <img 
             src={handsBack} 
             alt="Couple photo" 
-            className="w-full h-80 object-cover rounded-t-2xl"
+            className={`w-full h-80 object-cover rounded-t-2xl ${isVisible ? 'animate-slide-in-right' : ''}`}
           />
           <div 
             className="flex flex-col justify-center p-8 text-center"
             style={{ backgroundColor: theme?.colors.background }}
           >
-            <div className="inline-flex items-center gap-2 mb-4 justify-center">
+            <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up' : ''}`}>
               <Calendar className="w-5 h-5" style={{ color: theme?.colors.primary }} />
               <span 
                 className="text-sm font-medium uppercase tracking-wider"
@@ -88,7 +91,7 @@ const Countdown = ({ theme }: CountdownProps) => {
               </span>
             </div>
             <h2 
-              className="text-3xl md:text-4xl font-bold mb-8"
+              className={`text-3xl md:text-4xl font-bold mb-8 ${isVisible ? 'animate-slide-up-delay-200' : ''}`}
               style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
             >
               Faltan...
@@ -106,7 +109,7 @@ const Countdown = ({ theme }: CountdownProps) => {
         {/* Desktop layout - Image on left */}
         <div className="hidden md:grid md:grid-cols-3 md:gap-0 md:items-stretch">
           {/* Image - 1/3 */}
-          <div>
+          <div className={isVisible ? 'animate-slide-in-left' : ''}>
             <img 
               src={handsBack} 
               alt="Couple photo" 
@@ -120,7 +123,7 @@ const Countdown = ({ theme }: CountdownProps) => {
             style={{ backgroundColor: theme?.colors.background }}
           >
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 mb-4 justify-center">
+              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-300' : ''}`}>
                 <Calendar className="w-5 h-5" style={{ color: theme?.colors.primary }} />
                 <span 
                   className="text-sm font-medium uppercase tracking-wider"
@@ -130,7 +133,7 @@ const Countdown = ({ theme }: CountdownProps) => {
                 </span>
               </div>
               <h2 
-                className="text-3xl md:text-4xl font-bold mb-8"
+                className={`text-3xl md:text-4xl font-bold mb-8 ${isVisible ? 'animate-slide-up-delay-400' : ''}`}
                 style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
               >
                 Faltan...

@@ -2,6 +2,7 @@ import { MapPin, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import upUp from "@/assets/upup.jpg";
 import { DesignTheme } from "@/lib/designThemes";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface LocationProps {
   theme?: DesignTheme;
@@ -13,21 +14,23 @@ const Location = ({ theme }: LocationProps) => {
   const googleMapsUrl = `https://www.google.com/maps?q=${coordinates.lat},${coordinates.lng}`;
   const googleMapsEmbed = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.13193094809!2d-60.57925339999999!3d-33.9120039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b9b5353df98d5d%3A0x3ed7ebfe051e4e71!2sSalon%20Sanmarinense!5e0!3m2!1ses!2sar!4v1775074850105!5m2!1ses!2sar";
 
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <div className="w-full py-12 px-4" style={{ backgroundColor: `${theme?.colors.secondary}20` }}>
+    <div ref={ref} className="w-full py-12 px-4" style={{ backgroundColor: `${theme?.colors.secondary}20` }}>
       <div className="max-w-7xl mx-auto">
         {/* Mobile layout - Image on top */}
         <div className="md:hidden flex flex-col gap-0">
           <img 
             src={upUp} 
             alt="Couple photo" 
-            className="w-full h-80 object-cover rounded-t-2xl"
+            className={`w-full h-80 object-cover rounded-t-2xl ${isVisible ? 'animate-slide-in-right' : ''}`}
           />
           
           {/* Content */}
-          <div className="flex flex-col justify-center p-8">
+          <div className={`flex flex-col justify-center p-8 ${isVisible ? 'animate-slide-up' : ''}`}>
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 mb-4 justify-center">
+              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-200' : ''}`}>
                 <MapPin className="w-5 h-5" style={{ color: theme?.colors.primary }} />
                 <span 
                   className="text-sm font-medium uppercase tracking-wider"
@@ -37,7 +40,7 @@ const Location = ({ theme }: LocationProps) => {
                 </span>
               </div>
               <h2 
-                className="text-3xl font-bold mb-2"
+                className={`text-3xl font-bold mb-2 ${isVisible ? 'animate-slide-up-delay-400' : ''}`}
                 style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
               >
                 ¿Dónde celebraremos?
@@ -93,9 +96,9 @@ const Location = ({ theme }: LocationProps) => {
         {/* Desktop layout - Image on right */}
         <div className="hidden md:grid md:grid-cols-3 md:gap-0 md:items-stretch">
           {/* Content - 2/3 */}
-          <div className="md:col-span-2 flex flex-col justify-center p-8 md:p-12">
+          <div className={`md:col-span-2 flex flex-col justify-center p-8 md:p-12 ${isVisible ? 'animate-slide-in-left' : ''}`}>
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 mb-4 justify-center">
+              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-300' : ''}`}>
                 <MapPin className="w-5 h-5" style={{ color: theme?.colors.primary }} />
                 <span 
                   className="text-sm font-medium uppercase tracking-wider"
@@ -105,7 +108,7 @@ const Location = ({ theme }: LocationProps) => {
                 </span>
               </div>
               <h2 
-                className="text-3xl md:text-4xl font-bold mb-2"
+                className={`text-3xl md:text-4xl font-bold mb-2 ${isVisible ? 'animate-slide-up-delay-400' : ''}`}
                 style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
               >
                 ¿Dónde celebraremos?
@@ -158,7 +161,7 @@ const Location = ({ theme }: LocationProps) => {
           </div>
 
           {/* Image - 1/3 */}
-          <div>
+          <div className={isVisible ? 'animate-slide-in-right' : ''}>
             <img 
               src={upUp} 
               alt="Couple photo" 

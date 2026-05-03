@@ -1,5 +1,6 @@
 import { Clock, MapPin } from "lucide-react";
 import { DesignTheme } from "@/lib/designThemes";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface TimelineEvent {
   time: string;
@@ -35,19 +36,21 @@ const Timeline = ({ theme }: TimelineProps) => {
     }
   ];
 
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
-    <div className="w-full py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
+    <div ref={ref} className="w-full py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 
-            className="text-4xl md:text-5xl font-bold mb-3"
+            className={`text-4xl md:text-5xl font-bold mb-3 ${isVisible ? 'animate-slide-up' : ''}`}
             style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
           >
             Horario del Evento
           </h2>
           <p 
-            className="max-w-xl mx-auto"
+            className={`max-w-xl mx-auto ${isVisible ? 'animate-slide-up-delay-200' : ''}`}
             style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
           >
             Conoce la agenda de nuestra celebración
@@ -67,12 +70,16 @@ const Timeline = ({ theme }: TimelineProps) => {
           {/* Events */}
           <div className="space-y-8">
             {events.map((event, index) => (
-              <div key={index} className="relative">
+              <div 
+                key={index} 
+                className={`relative ${isVisible ? 'animate-slide-up' : ''}`}
+                style={{ animationDelay: isVisible ? `${index * 0.2}s` : '0s' }}
+              >
                 <div className={`flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
                   {/* Content */}
                   <div className={`w-1/2 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
                     <div 
-                      className="rounded-lg p-6 shadow-sm border hover:shadow-md transition-all duration-300"
+                      className="rounded-lg p-6 shadow-sm border hover:shadow-md transition-all duration-300 hover:scale-105"
                       style={{ 
                         backgroundColor: theme?.colors.light,
                         borderColor: `${theme?.colors.primary}33`
