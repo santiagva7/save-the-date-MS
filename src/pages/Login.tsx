@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { validateGuestCode } from "@/data/guestCodes";
 import { toast } from "sonner";
+import weddingHero from "@/assets/wedding-hero.jpg";
 
 const Login = () => {
   const [code, setCode] = useState("");
@@ -31,8 +32,17 @@ const Login = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#E6D6BE' }} className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div style={{ backgroundColor: '#E6D6BE' }} className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${weddingHero})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.12,
+        }}
+      />
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8 animate-fade-in">
           <Heart className="w-16 h-16 mx-auto mb-4" style={{ color: '#D4AF37' }} />
           <h1 className="font-playfair text-4xl md:text-5xl font-bold text-foreground mb-2">
@@ -52,7 +62,7 @@ const Login = () => {
               Ingresa tu código
             </h2>
             <p className="text-sm text-muted-foreground">
-              Introduce el código de invitación que recibiste
+              Introducí el código de invitación que recibiste con el link
             </p>
           </div>
 
@@ -83,7 +93,7 @@ const Login = () => {
           </form>
 
           <p className="text-xs text-center mt-6" style={{ color: '#7A6A5A' }}>
-            ¿No tienes tu código? Contacta con los novios
+            ¿No tenés tu código? Contactá con los novios
           </p>
         </div>
       </div>

@@ -43,16 +43,16 @@ const GiftRegistry = () => {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className={`inline-flex items-center gap-2 mb-6 ${isVisible ? 'animate-slide-up' : ''}`}>
+          <div className={`inline-flex items-center gap-2 mb-6 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
             <Gift className="w-5 h-5 text-wedding-gold" />
             <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
               Regalos
             </span>
           </div>
-          <p className={`font-playfair text-3xl md:text-5xl font-light mb-6 leading-relaxed ${isVisible ? 'animate-slide-up-delay-200' : ''}`}>
+          <p className={`font-playfair text-3xl md:text-5xl font-light mb-6 leading-relaxed ${isVisible ? 'animate-slide-up-delay-200' : 'opacity-0'}`}>
             Tu presencia es el mejor presente
           </p>
-          <p className={`text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed ${isVisible ? 'animate-slide-up-delay-400' : ''}`}>
+          <p className={`text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed ${isVisible ? 'animate-slide-up-delay-400' : 'opacity-0'}`}>
             Sabemos el esfuerzo que representa acompañarnos en este día tan especial. Si deseás colaborar con un regalo, el dinero nos será de utilidad. Podés depositarlo en cualquiera de las siguientes cuentas.
           </p>
         </div>
@@ -62,7 +62,7 @@ const GiftRegistry = () => {
           {giftOptions.map((option, index) => (
             <div
               key={index}
-              className={`bg-card rounded-lg p-8 shadow-sm border border-wedding-gold/20 hover:border-wedding-gold/50 hover:shadow-md transition-all duration-300 ${isVisible ? 'animate-slide-up' : ''}`}
+              className={`bg-card rounded-lg p-8 shadow-sm border border-wedding-gold/20 hover:border-wedding-gold/50 hover:shadow-md transition-all duration-300 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}
               style={{ animationDelay: isVisible ? `${index * 0.2}s` : '0s' }}
             >
               <h3 className="font-playfair text-2xl font-bold mb-6 text-wedding-gold">

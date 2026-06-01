@@ -1,6 +1,7 @@
+import { useRef } from "react";
 import { Clock, MapPin } from "lucide-react";
 import { DesignTheme } from "@/lib/designThemes";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface TimelineEvent {
   time: string;
@@ -21,7 +22,6 @@ const Timeline = ({ theme }: TimelineProps) => {
       location: "Patio del salón",
       description: "Comienza la ceremonia religiosa"
     },
-   
     {
       time: "22:00",
       title: "Cena",
@@ -36,103 +36,111 @@ const Timeline = ({ theme }: TimelineProps) => {
     }
   ];
 
-  const { ref, isVisible } = useScrollAnimation();
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 80%", "end 20%"],
+  });
+  const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={ref} className="w-full py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
-      <div className="max-w-3xl mx-auto">
+    <div ref={timelineRef} className="w-full py-12 px-4" style={{ backgroundColor: theme?.colors.background }}>
+      <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 
-            className={`text-4xl md:text-5xl font-bold mb-3 ${isVisible ? 'animate-slide-up' : ''}`}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "0px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-4xl md:text-5xl font-bold mb-3"
             style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
           >
             Horario del Evento
-          </h2>
-          <p 
-            className={`max-w-xl mx-auto ${isVisible ? 'animate-slide-up-delay-200' : ''}`}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "0px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+            className="max-w-xl mx-auto"
             style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
           >
-            Conoce la agenda de nuestra celebración
-          </p>
+            Conocé la agenda de nuestra celebración
+          </motion.p>
         </div>
 
         {/* Timeline */}
-        <div className="relative">
-          {/* Línea vertical central */}
-          <div 
-            className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b"
-            style={{ 
-              backgroundImage: `linear-gradient(to bottom, ${theme?.colors.primary}, ${theme?.colors.primary}cc, transparent)` 
+        <div className="relative pl-10">
+          {/* Continuous vertical line — grows on scroll */}
+          <motion.div
+            className="absolute left-4 top-6 bottom-6 w-0.5 origin-top"
+            style={{
+              scaleY: lineScaleY,
+              backgroundImage: `linear-gradient(to bottom, ${theme?.colors.primary}, ${theme?.colors.primary}88, transparent)`,
             }}
-          ></div>
+          />
 
           {/* Events */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {events.map((event, index) => (
-              <div 
-                key={index} 
-                className={`relative ${isVisible ? 'animate-slide-up' : ''}`}
-                style={{ animationDelay: isVisible ? `${index * 0.2}s` : '0s' }}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
+                className="relative"
               >
-                <div className={`flex ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
-                  {/* Content */}
-                  <div className={`w-1/2 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
-                    <div 
-                      className="rounded-lg p-6 shadow-sm border hover:shadow-md transition-all duration-300 hover:scale-105"
-                      style={{ 
-                        backgroundColor: theme?.colors.light,
-                        borderColor: `${theme?.colors.primary}33`
-                      }}
+                {/* Dot on the line */}
+                <div
+                  className="absolute left-[-29px] top-5 w-3 h-3 rounded-full border-2 z-10"
+                  style={{
+                    backgroundColor: theme?.colors.primary,
+                    borderColor: theme?.colors.background || 'white',
+                  }}
+                />
+
+                {/* Card */}
+                <div
+                  className="rounded-lg p-5 shadow-sm border hover:shadow-md transition-shadow duration-300"
+                  style={{
+                    backgroundColor: theme?.colors.light,
+                    borderColor: `${theme?.colors.primary}33`,
+                  }}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <Clock className="w-4 h-4 flex-shrink-0" style={{ color: theme?.colors.primary }} />
+                    <span
+                      className="text-2xl font-bold"
+                      style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.primary }}
                     >
-                      <div className="flex items-start gap-2 mb-2">
-                        <Clock className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: theme?.colors.primary }} />
-                        <span 
-                          className="text-2xl font-bold"
-                          style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.primary }}
-                        >
-                          {event.time}
-                        </span>
-                      </div>
-                      
-                      <h3 
-                        className="text-xl font-bold mb-2"
-                        style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
-                      >
-                        {event.title}
-                      </h3>
-                      
-                      <div className="flex items-center gap-2 mb-3 text-sm" style={{ color: theme?.colors.accent }}>
-                        <MapPin className="w-4 h-4" style={{ opacity: 0.6 }} />
-                        {event.location}
-                      </div>
-
-                      {event.description && (
-                        <p 
-                          className="text-sm"
-                          style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
-                        >
-                          {event.description}
-                        </p>
-                      )}
-                    </div>
+                      {event.time}
+                    </span>
                   </div>
 
-                  {/* Center dot */}
-                  <div className="w-0 flex justify-center relative">
-                    <div 
-                      className="w-4 h-4 rounded-full border-4 shadow-md"
-                      style={{ 
-                        backgroundColor: theme?.colors.primary,
-                        borderColor: theme?.colors.background || 'white'
-                      }}
-                    ></div>
+                  <h3
+                    className="text-xl font-bold mb-2"
+                    style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
+                  >
+                    {event.title}
+                  </h3>
+
+                  <div className="flex items-center gap-2 mb-2 text-sm" style={{ color: theme?.colors.accent }}>
+                    <MapPin className="w-4 h-4 flex-shrink-0" style={{ opacity: 0.6 }} />
+                    <span>{event.location}</span>
                   </div>
 
-                  {/* Empty space */}
-                  <div className="w-1/2"></div>
+                  {event.description && (
+                    <p
+                      className="text-sm"
+                      style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}
+                    >
+                      {event.description}
+                    </p>
+                  )}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

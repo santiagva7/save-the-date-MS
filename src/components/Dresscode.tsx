@@ -16,19 +16,19 @@ const Dresscode = () => {
           <img 
             src={extendedKiss} 
             alt="Couple photo" 
-            className={`w-full h-80 object-cover rounded-t-2xl ${isVisible ? 'animate-slide-in-right' : ''}`}
+            className={`w-full h-80 object-cover rounded-t-2xl ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}
           />
           
           {/* Content */}
-          <div className={`flex flex-col justify-center p-8 ${isVisible ? 'animate-slide-up' : ''}`}>
+          <div className={`flex flex-col justify-center p-8 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
             <div className="text-center mb-8">
-              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-200' : ''}`}>
+              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-200' : 'opacity-0'}`}>
                 <Shirt className="w-5 h-5 text-wedding-gold" />
                 <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                   Dresscode
                 </span>
               </div>
-              <h2 className={`font-playfair text-3xl font-bold mb-2 ${isVisible ? 'animate-slide-up-delay-400' : ''}`}>
+              <h2 className={`font-playfair text-3xl font-bold mb-2 ${isVisible ? 'animate-slide-up-delay-400' : 'opacity-0'}`}>
                 Código de vestimenta
               </h2>
             </div>
@@ -86,7 +86,7 @@ const Dresscode = () => {
         {/* Desktop layout - Image on left */}
         <div className="hidden md:grid md:grid-cols-3 md:gap-0 md:items-stretch">
           {/* Image - 1/3 */}
-          <div className={isVisible ? 'animate-slide-in-left' : ''}>
+          <div className={isVisible ? 'animate-slide-in-left' : 'opacity-0'}>
             <img 
               src={extendedKiss} 
               alt="Couple photo" 
@@ -95,15 +95,15 @@ const Dresscode = () => {
           </div>
           
           {/* Content - 2/3 */}
-          <div className={`md:col-span-2 flex flex-col justify-center p-8 md:p-12 ${isVisible ? 'animate-slide-in-right' : ''}`}>
+          <div className={`md:col-span-2 flex flex-col justify-center p-8 md:p-12 ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}>
             <div className="text-center mb-8">
-              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-300' : ''}`}>
+              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-300' : 'opacity-0'}`}>
                 <Shirt className="w-5 h-5 text-wedding-gold" />
                 <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                   Dresscode
                 </span>
               </div>
-              <h2 className={`font-playfair text-3xl md:text-4xl font-bold mb-2 ${isVisible ? 'animate-slide-up-delay-400' : ''}`}>
+              <h2 className={`font-playfair text-3xl md:text-4xl font-bold mb-2 ${isVisible ? 'animate-slide-up-delay-400' : 'opacity-0'}`}>
                 Código de vestimenta
               </h2>
             </div>

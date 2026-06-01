@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Calendar, Heart, Clock } from "lucide-react";
+import { Calendar, Heart, Clock, ChevronDown } from "lucide-react";
 import { GuestInfo } from "@/data/guestCodes";
 import Countdown from "@/components/Countdown";
 import Timeline from "@/components/Timeline";
 import Location from "@/components/Location";
 import Dresscode from "@/components/Dresscode";
 import RSVPSection from "@/components/RSVPSection";
+import PhotoGallery from "@/components/PhotoGallery";
+import MusicButton from "@/components/MusicButton";
 import weddingHero from "@/assets/wedding-hero.jpg";
 import weddingHeroMb from "@/assets/wedding-hero-mb.jpg";
 import GiftRegistry from "@/components/GiftRegistry";
@@ -111,10 +113,8 @@ const Invitation = () => {
           )}
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-wedding-gold rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-wedding-gold rounded-full" />
-          </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-60">
+          <ChevronDown className="w-8 h-8 text-wedding-gold" />
         </div>
       </section>
 
@@ -123,6 +123,8 @@ const Invitation = () => {
         <Countdown />
       </section>
       
+      <PhotoGallery />
+
       {/* Timeline Section */}
       <section 
         className="bg-gradient-to-b from-background to-secondary/20 bg-cover bg-center relative"
@@ -158,6 +160,7 @@ const Invitation = () => {
       <RSVPSection />
 
       <FooterSection />
+      <MusicButton />
     </div>
   );
 };

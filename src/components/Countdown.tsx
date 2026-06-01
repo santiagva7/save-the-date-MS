@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 import handsBack from "@/assets/hands_back.jpg";
 import { DesignTheme } from "@/lib/designThemes";
@@ -45,18 +46,25 @@ const Countdown = ({ theme }: CountdownProps) => {
 
   const TimeUnit = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center">
-      <div 
-        className="rounded-xl shadow-md p-4 mb-2 min-w-[70px] md:min-w-[90px]"
+      <div
+        className="rounded-xl shadow-md p-4 mb-2 min-w-[70px] md:min-w-[90px] overflow-hidden flex justify-center"
         style={{ backgroundColor: theme?.colors.light || '#faf8f3' }}
       >
-        <span 
-          className="font-bold text-3xl md:text-4xl"
-          style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.primary || '#bb9457' }}
-        >
-          {value.toString().padStart(2, "0")}
-        </span>
+        <AnimatePresence mode="popLayout">
+          <motion.span
+            key={value}
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="font-bold text-3xl md:text-4xl block"
+            style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.primary || '#bb9457' }}
+          >
+            {value.toString().padStart(2, "0")}
+          </motion.span>
+        </AnimatePresence>
       </div>
-      <span 
+      <span
         className="text-xs md:text-sm uppercase tracking-wider"
         style={{ color: theme?.colors.accent || '#99582a', fontFamily: theme?.fonts.body }}
       >
@@ -75,13 +83,13 @@ const Countdown = ({ theme }: CountdownProps) => {
           <img 
             src={handsBack} 
             alt="Couple photo" 
-            className={`w-full h-80 object-cover rounded-t-2xl ${isVisible ? 'animate-slide-in-right' : ''}`}
+            className={`w-full h-80 object-cover rounded-t-2xl ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}
           />
           <div 
             className="flex flex-col justify-center p-8 text-center"
             style={{ backgroundColor: theme?.colors.background }}
           >
-            <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up' : ''}`}>
+            <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
               <Calendar className="w-5 h-5" style={{ color: theme?.colors.primary }} />
               <span 
                 className="text-sm font-medium uppercase tracking-wider"
@@ -91,7 +99,7 @@ const Countdown = ({ theme }: CountdownProps) => {
               </span>
             </div>
             <h2 
-              className={`text-3xl md:text-4xl font-bold mb-8 ${isVisible ? 'animate-slide-up-delay-200' : ''}`}
+              className={`text-3xl md:text-4xl font-bold mb-8 ${isVisible ? 'animate-slide-up-delay-200' : 'opacity-0'}`}
               style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
             >
               Faltan...
@@ -109,7 +117,7 @@ const Countdown = ({ theme }: CountdownProps) => {
         {/* Desktop layout - Image on left */}
         <div className="hidden md:grid md:grid-cols-3 md:gap-0 md:items-stretch">
           {/* Image - 1/3 */}
-          <div className={isVisible ? 'animate-slide-in-left' : ''}>
+          <div className={isVisible ? 'animate-slide-in-left' : 'opacity-0'}>
             <img 
               src={handsBack} 
               alt="Couple photo" 
@@ -123,7 +131,7 @@ const Countdown = ({ theme }: CountdownProps) => {
             style={{ backgroundColor: theme?.colors.background }}
           >
             <div className="text-center">
-              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-300' : ''}`}>
+              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-300' : 'opacity-0'}`}>
                 <Calendar className="w-5 h-5" style={{ color: theme?.colors.primary }} />
                 <span 
                   className="text-sm font-medium uppercase tracking-wider"
@@ -133,7 +141,7 @@ const Countdown = ({ theme }: CountdownProps) => {
                 </span>
               </div>
               <h2 
-                className={`text-3xl md:text-4xl font-bold mb-8 ${isVisible ? 'animate-slide-up-delay-400' : ''}`}
+                className={`text-3xl md:text-4xl font-bold mb-8 ${isVisible ? 'animate-slide-up-delay-400' : 'opacity-0'}`}
                 style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
               >
                 Faltan...

@@ -107,7 +107,7 @@ const RSVPDialog = () => {
       <DialogContent className="sm:max-w-md w-full max-h-[90vh] overflow-y-auto flex flex-col items-center justify-center">
         <DialogHeader className="w-full">
           <DialogTitle className="font-playfair text-2xl text-center">
-            CONFIRMACIÓN
+            Confirmación
           </DialogTitle>
           <DialogDescription className="text-center">
             Por favor, confirma tu asistencia a nuestra boda
@@ -131,14 +131,14 @@ const RSVPDialog = () => {
                 value={formData.attendance}
                 onValueChange={(value) => setFormData({ ...formData, attendance: value })}
               >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="yes" id="yes" />
+                <div className="flex items-center min-h-[44px] gap-3">
+                  <RadioGroupItem value="yes" id="yes" className="h-5 w-5 border-2 border-wedding-gold text-wedding-gold" />
                   <Label htmlFor="yes" className="font-normal cursor-pointer">
                     Sí, allí estaré
                   </Label>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="no" id="no" />
+                <div className="flex items-center min-h-[44px] gap-3">
+                  <RadioGroupItem value="no" id="no" className="h-5 w-5 border-2 border-wedding-gold text-wedding-gold" />
                   <Label htmlFor="no" className="font-normal cursor-pointer">
                     No podré asistir
                   </Label>
@@ -167,8 +167,8 @@ const RSVPDialog = () => {
             </div>
 
             {guestHelp && (
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <p className="text-sm text-blue-900">{guestHelp}</p>
+              <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                <p className="text-sm text-amber-800">{guestHelp}</p>
               </div>
             )}
 

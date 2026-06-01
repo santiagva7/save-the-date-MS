@@ -1,4 +1,5 @@
-import { Heart, Calendar } from "lucide-react";
+import { Heart, Calendar, ChevronDown } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { GuestInfo } from "@/data/guestCodes";
 import Countdown from "@/components/Countdown";
 import Timeline from "@/components/Timeline";
@@ -16,6 +17,9 @@ interface InvitationPreviewProps {
 }
 
 const InvitationPreview = ({ guest, theme }: InvitationPreviewProps) => {
+  const { scrollY } = useScroll();
+  const backgroundY = useTransform(scrollY, [0, 500], ['0px', '80px']);
+
   const themeStyle = `
     :root {
       --design-primary: ${theme.colors.primary};
@@ -67,60 +71,76 @@ const InvitationPreview = ({ guest, theme }: InvitationPreviewProps) => {
         <section
           className="relative h-screen flex items-center justify-center bg-cover bg-center overflow-hidden"
         >
-          <div 
-            className="absolute inset-0"
-            style={{ 
+          <motion.div
+            className="absolute left-0 right-0 bottom-0"
+            style={{
+              top: '-80px',
               backgroundImage: `url(${weddingHero})`,
-              backgroundAttachment: 'fixed',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              filter: 'blur(2px)'
+              filter: 'blur(2px)',
+              y: backgroundY,
             }}
           />
-          <div className="relative z-10 text-center px-4 animate-fade-in">
-            <Heart className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-6" style={{ color: theme.colors.primary }} />
+          <div className="relative z-10 text-center px-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <Heart className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-6" style={{ color: theme.colors.primary }} />
+            </motion.div>
 
-            <h1 
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
               style={{ fontFamily: theme.fonts.heading, color: theme.colors.text }}
             >
               Melina & Santiago
-            </h1>
+            </motion.h1>
 
-            <div className="inline-block mb-6">
-              <p 
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              className="inline-block mb-6"
+            >
+              <p
                 className="text-xl md:text-2xl font-light tracking-[0.3em] uppercase"
                 style={{ color: theme.colors.secondary }}
               >
                 Save the Date
               </p>
-            </div>
-
-            <div className="flex items-center justify-center gap-3 text-lg md:text-xl mb-8" style={{ color: theme.colors.text }}>
-              <Calendar className="w-5 h-5" style={{ color: theme.colors.primary }} />
-              <time className="font-medium">10 de Enero, 2027</time>
-            </div>
+            </motion.div>
 
             {guest.message && (
-              <p 
-                className="text-base md:text-lg max-w-2xl mx-auto italic animate-slide-up"
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                className="text-base md:text-lg max-w-2xl mx-auto italic mb-6"
                 style={{ color: theme.colors.accent, fontFamily: theme.fonts.body }}
               >
                 {guest.message}
-              </p>
+              </motion.p>
             )}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+              className="flex items-center justify-center gap-3 text-lg md:text-xl mb-8"
+              style={{ color: theme.colors.text }}
+            >
+              <Calendar className="w-5 h-5" style={{ color: theme.colors.primary }} />
+              <time className="font-medium">10 de Enero, 2027</time>
+            </motion.div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <div 
-              className="w-6 h-10 rounded-full flex items-start justify-center p-2"
-              style={{ borderColor: theme.colors.primary, borderWidth: '2px' }}
-            >
-              <div 
-                className="w-1 h-3 rounded-full"
-                style={{ backgroundColor: theme.colors.primary }}
-              />
-            </div>
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-60">
+            <ChevronDown className="w-8 h-8" style={{ color: theme.colors.primary }} />
           </div>
         </section>
 
@@ -194,7 +214,7 @@ const InvitationPreview = ({ guest, theme }: InvitationPreviewProps) => {
               className="text-sm"
               style={{ color: theme.colors.accent, fontFamily: theme.fonts.body }}
             >
-              Nos encantaría compartir este día especial contigo
+              Nos encantaría compartir este día especial con vos
             </p>
             <p 
               className="text-xs mt-4"
