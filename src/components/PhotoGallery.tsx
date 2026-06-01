@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import backTruck from "@/assets/back-truck.jpg";
-import couplePhoto4 from "@/assets/couple-photo-4.jpg";
 import extendedKiss from "@/assets/extended-hand-kiss.jpg";
 import handsBack from "@/assets/hands_back.jpg";
 import upUp from "@/assets/upup.jpg";
 
-const images = [backTruck, couplePhoto4, extendedKiss, handsBack, upUp];
+const images = [backTruck, extendedKiss, handsBack, upUp];
 
 const PhotoGallery = () => {
   const [current, setCurrent] = useState(0);
