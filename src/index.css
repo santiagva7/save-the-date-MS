@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Slight';
+  src: url('/fonts/slight.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
@@ -10,21 +18,21 @@ All colors MUST be HSL.
   :root {
     /* Wedding color palette - warm, romantic, elegant */
     --background: 35 25% 98%;
-    --foreground: 30 15% 25%;
+    --foreground: 22 55% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 30 15% 25%;
+    --card-foreground: 22 55% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 30 15% 25%;
+    --popover-foreground: 22 55% 20%;
 
     /* Soft gold primary */
     --primary: 43 74% 66%;
-    --primary-foreground: 30 15% 25%;
+    --primary-foreground: 22 55% 20%;
 
     /* Warm beige secondary */
     --secondary: 30 20% 92%;
-    --secondary-foreground: 30 15% 25%;
+    --secondary-foreground: 22 55% 20%;
 
     /* Soft muted tones */
     --muted: 30 15% 95%;
@@ -94,8 +102,8 @@ All colors MUST be HSL.
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 35 25% 95%;
 
-    --border: 30 15% 25%;
-    --input: 30 15% 25%;
+    --border: 22 55% 20%;
+    --input: 22 55% 20%;
     --ring: 43 74% 66%;
     
     --sidebar-background: 240 5.9% 10%;

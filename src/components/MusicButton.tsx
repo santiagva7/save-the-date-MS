@@ -4,6 +4,7 @@ import { Music2, VolumeX } from "lucide-react";
 // Place an MP3 file at public/ambient.mp3 to enable background music.
 const AUDIO_SRC = "/ambient.mp3";
 const TARGET_VOLUME = 0.4;
+const START_SECOND = 15; // Change to start playback from a specific second
 
 const MusicButton = () => {
   const [playing, setPlaying] = useState(false);
@@ -13,41 +14,46 @@ const MusicButton = () => {
   useEffect(() => {
     const audio = new Audio(AUDIO_SRC);
     audio.loop = true;
-    audio.volume = 0;
+    audio.volume = TARGET_VOLUME;
     audioRef.current = audio;
-    return () => {
-      audio.pause();
-    };
+    return () => { audio.pause(); };
   }, []);
 
-  const fadeIn = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
+  const fadeIn = (audio: HTMLAudioElement) => {
     audio.volume = 0;
     const step = TARGET_VOLUME / 25;
     const interval = setInterval(() => {
-      if (!audioRef.current) { clearInterval(interval); return; }
-      const next = Math.min(audioRef.current.volume + step, TARGET_VOLUME);
-      audioRef.current.volume = next;
+      const next = Math.min(audio.volume + step, TARGET_VOLUME);
+      audio.volume = next;
       if (next >= TARGET_VOLUME) clearInterval(interval);
     }, 40);
   };
 
-  const toggle = () => {
+  const toggle = async () => {
     const audio = audioRef.current;
     if (!audio) return;
+
     if (playing) {
       audio.pause();
-    } else {
-      audio.play().catch(() => {});
-      if (firstPlay) {
-        fadeIn();
-        setFirstPlay(false);
-      } else {
-        audio.volume = TARGET_VOLUME;
-      }
+      setPlaying(false);
+      return;
     }
-    setPlaying(prev => !prev);
+
+    const isFirst = firstPlay;
+    if (isFirst) {
+      audio.currentTime = START_SECOND;
+      setFirstPlay(false);
+    }
+
+    try {
+      await audio.play();
+      if (isFirst) fadeIn(audio);
+    } catch (err) {
+      console.error("No se pudo reproducir el audio:", err);
+      return;
+    }
+
+    setPlaying(true);
   };
 
   return (

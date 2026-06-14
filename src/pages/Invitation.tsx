@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Calendar, Heart, Clock, ChevronDown } from "lucide-react";
 import { GuestInfo } from "@/data/guestCodes";
+import weddingHero from "@/assets/wedding-hero.jpg";
 import Countdown from "@/components/Countdown";
 import Timeline from "@/components/Timeline";
 import Location from "@/components/Location";
 import Dresscode from "@/components/Dresscode";
 import RSVPSection from "@/components/RSVPSection";
 import PhotoGallery from "@/components/PhotoGallery";
-import MusicButton from "@/components/MusicButton";
-import weddingHero from "@/assets/wedding-hero.jpg";
-import weddingHeroMb from "@/assets/wedding-hero-mb.jpg";
+import HeroSection from "@/components/HeroSection";
 import GiftRegistry from "@/components/GiftRegistry";
 import FooterSection from "@/components/FooterSection";
 
@@ -18,16 +16,6 @@ import FooterSection from "@/components/FooterSection";
 const Invitation = () => {
   const navigate = useNavigate();
   const [guest, setGuest] = useState<GuestInfo | null>(null);
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : true);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => {
     const guestInfoStr = localStorage.getItem("guestInfo");
@@ -48,75 +36,12 @@ const Invitation = () => {
     return null;
   }
 
-  const backgroundImage = isMobile ? weddingHeroMb : weddingHero;
+  const backgroundImage = weddingHero;
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section
-        className="relative h-screen flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/80" />
-        
-        <div className="relative z-10 text-center px-4">
-          <Heart className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-6 text-wedding-gold animate-fade-in" />
-          
-          <h1 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold mb-4 animate-slide-up">
-            Melina & Santiago
-          </h1>
-          
-          <div className="inline-block mb-6 animate-slide-up-delay-200">
-            <p className="text-xl md:text-2xl font-light tracking-[0.3em] uppercase text-muted-foreground">
-              Save the Date
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 mb-8">
-            <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-wedding-gold/30 animate-slide-up-delay-400">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-4 h-4 text-wedding-gold" />
-                  <div className="text-left">
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">Civil</p>
-                    <time className="font-medium text-sm md:text-base">8 de Enero, 2027</time>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 ml-6">
-                  <Clock className="w-4 h-4 text-wedding-gold" />
-                  <time className="text-sm text-muted-foreground">10:00</time>
-                </div>
-              </div>
-            </div>
-            <div className="hidden sm:block text-wedding-gold/50">•</div>
-            <div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-wedding-gold/30 animate-slide-up-delay-400">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-4 h-4 text-wedding-gold" />
-                  <div className="text-left">
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">Ceremonia</p>
-                    <time className="font-medium text-sm md:text-base">10 de Enero, 2027</time>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 ml-6">
-                  <Clock className="w-4 h-4 text-wedding-gold" />
-                  <time className="text-sm text-muted-foreground">19:30</time>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {guest.message && (
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto italic animate-slide-up">
-              {guest.message}
-            </p>
-          )}
-        </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-60">
-          <ChevronDown className="w-8 h-8 text-wedding-gold" />
-        </div>
-      </section>
+      <HeroSection guest={guest} />
 
       {/* Countdown Section */}
       <section className="bg-gradient-to-b from-background to-secondary/20">
@@ -160,7 +85,6 @@ const Invitation = () => {
       <RSVPSection />
 
       <FooterSection />
-      <MusicButton />
     </div>
   );
 };
