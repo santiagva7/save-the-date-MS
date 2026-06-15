@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { validateGuestCode } from "@/data/guestCodes";
 import { toast } from "sonner";
+import { C } from "@/components/shared";
 
 // Palette (from official wedding colors)
 // --paper:    #F7F3EE  Parchment
@@ -93,7 +94,7 @@ const Login = () => {
             fontSize: 12,
             letterSpacing: "0.42em",
             textTransform: "uppercase",
-            color: "#607C9A",
+            color: C.ink,
             marginBottom: 6,
             paddingLeft: "0.42em",
           }}
@@ -108,7 +109,7 @@ const Login = () => {
               display: "block",
               fontFamily: "'Slight', 'Pinyon Script', cursive",
               fontSize: 52,
-              color: "#4B352A",
+              color: C.glaucous,
             }}
           >
             Melina
@@ -130,7 +131,7 @@ const Login = () => {
               display: "block",
               fontFamily: "'Slight', 'Pinyon Script', cursive",
               fontSize: 52,
-              color: "#4B352A",
+              color: C.glaucous,
             }}
           >
             Santiago

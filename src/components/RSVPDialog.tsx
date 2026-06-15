@@ -57,7 +57,14 @@ const RSVPDialog = () => {
     const whatsappUrl = `https://wa.me/542948450880?text=${encodeURIComponent(msg)}`;
     setIsSubmitted(true);
     toast.success("¡Confirmación recibida! Gracias por responder.");
-    window.open(whatsappUrl, "_blank");
+    setTimeout(() => {
+      window.open(whatsappUrl, "_blank");
+      setTimeout(() => {
+        setOpen(false);
+        setIsSubmitted(false);
+        setFormData({ name: "", attendance: "yes", dietary: "", songRequest: "" });
+      }, 100);
+    }, 150);
   };
 
   return (
