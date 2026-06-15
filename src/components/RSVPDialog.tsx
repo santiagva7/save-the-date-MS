@@ -57,14 +57,7 @@ const RSVPDialog = () => {
     const whatsappUrl = `https://wa.me/542948450880?text=${encodeURIComponent(msg)}`;
     setIsSubmitted(true);
     toast.success("¡Confirmación recibida! Gracias por responder.");
-    setTimeout(() => {
-      window.open(whatsappUrl, "_blank");
-      setTimeout(() => {
-        setOpen(false);
-        setIsSubmitted(false);
-        setFormData({ name: "", attendance: "yes", dietary: "", songRequest: "" });
-      }, 100);
-    }, 150);
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
@@ -75,7 +68,7 @@ const RSVPDialog = () => {
 
       <DialogContent
         className="p-0 border-none shadow-none bg-transparent max-w-[430px] w-full"
-        style={{ boxShadow: "none", border: "none", borderRadius: 0, padding: 0, background: "transparent" }}
+        style={{ boxShadow: "none", border: "none", borderRadius: 0, padding: 0, background: "transparent", maxHeight: "90vh", overflowY: "auto" }}
       >
         {/* Modal — hoja parchment con filete grabado */}
         <div style={{
@@ -83,8 +76,6 @@ const RSVPDialog = () => {
           background: C.parchment,
           boxShadow: "0 30px 80px rgba(20,14,10,.45)",
           padding: "48px 46px 44px",
-          maxHeight: "90vh",
-          overflowY: "auto",
         }}>
           {/* Doble filete (inset reducido para modal) */}
           <div aria-hidden style={{ position: "absolute", inset: 14, border: "1.5px solid rgba(75,53,42,.55)", pointerEvents: "none", zIndex: 5 }} />
@@ -213,6 +204,7 @@ const RSVPDialog = () => {
                     }}>
                       {guestHelp}
                     </p>
+                    <div style={{ width: 40, height: 1, background: C.gold }} />
                   </div>
                 )}
 
