@@ -1,129 +1,127 @@
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import { MapPin, Navigation } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useRef } from "react";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import upUp from "@/assets/upup.jpg";
-import { DesignTheme } from "@/lib/designThemes";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { C, Paper, EngravedFrame, Overline, Flourish, TamedPhoto, OutlineLink, InViewFade } from "./shared";
 
-interface LocationProps {
-  theme?: DesignTheme;
-}
+const COORDS: [number, number] = [-33.9120039, -60.57925339999999];
+const MAPS_URL = `https://www.google.com/maps?q=${COORDS[0]},${COORDS[1]}`;
 
-const goldMarker = new L.DivIcon({
-  html: `<div style="width:18px;height:18px;border-radius:50%;background-color:#D4AF37;border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,0.4);"></div>`,
-  className: '',
-  iconSize: [18, 18],
-  iconAnchor: [9, 9],
+// Marcador rombo dorado
+const diamondMarker = L.divIcon({
+  html: `<div style="position:relative;width:20px;height:20px;display:flex;align-items:center;justify-content:center;">
+    <div style="position:absolute;width:20px;height:20px;border-radius:50%;background:#F7F3EE;"></div>
+    <div style="position:relative;width:9px;height:9px;background:#C5A253;transform:rotate(45deg);"></div>
+  </div>`,
+  className: "",
+  iconSize: [20, 20],
+  iconAnchor: [10, 10],
 });
 
-const Location = ({ theme }: LocationProps) => {
-  const address = "Salón Sanmarinense, Buenos Aires, Argentina";
-  const coordinates: [number, number] = [-33.9120039, -60.57925339999999];
-  const googleMapsUrl = `https://www.google.com/maps?q=${coordinates[0]},${coordinates[1]}`;
+// Fuerza invalidateSize tras montar el mapa
+const MapFixer = () => {
+  const map = useMap();
+  useEffect(() => {
+    setTimeout(() => map.invalidateSize(), 100);
+  }, [map]);
+  return null;
+};
 
-  const { ref, isVisible } = useScrollAnimation();
-
-  const leafletMap = (
-    <MapContainer
-      center={coordinates}
-      zoom={15}
-      style={{ height: '280px', width: '100%' }}
-      scrollWheelZoom={false}
-      zoomControl={false}
-    >
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>'
-      />
-      <Marker position={coordinates} icon={goldMarker} />
-    </MapContainer>
-  );
-
-  const mapCard = (
-    <div className="rounded-2xl overflow-hidden shadow-lg" style={{ backgroundColor: theme?.colors.light }}>
-      {leafletMap}
-      <div className="p-6">
-        <Button
-          asChild
-          style={{ backgroundColor: theme?.colors.primary, color: theme?.colors.text }}
-        >
-          <a
-            href={googleMapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 w-full font-medium"
-          >
-            <Navigation className="w-4 h-4" />
-            Cómo llegar
-          </a>
-        </Button>
-      </div>
-    </div>
-  );
-
+const Location = () => {
   return (
-    <div ref={ref} className="w-full py-12 px-4" style={{ backgroundColor: `${theme?.colors.secondary}20` }}>
-      <div className="max-w-7xl mx-auto">
-        {/* Mobile layout — Image on top */}
-        <div className="md:hidden flex flex-col gap-0">
-          <img
-            src={upUp}
-            alt="Couple photo"
-            className={`w-full h-80 object-cover rounded-t-2xl ${isVisible ? 'animate-slide-in-right' : 'opacity-0'}`}
-          />
-          <div className={`flex flex-col justify-center p-8 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
-            <div className="text-center mb-8">
-              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-200' : 'opacity-0'}`}>
-                <MapPin className="w-5 h-5" style={{ color: theme?.colors.primary }} />
-                <span className="text-sm font-medium uppercase tracking-wider" style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}>
-                  Ubicación
-                </span>
-              </div>
-              <h2
-                className={`text-3xl font-bold mb-2 ${isVisible ? 'animate-slide-up-delay-400' : 'opacity-0'}`}
-                style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
-              >
-                ¿Dónde celebraremos?
-              </h2>
-              <p className="max-w-xl mx-auto" style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}>
-                {address}
-              </p>
-            </div>
-            {mapCard}
-          </div>
-        </div>
+    <Paper>
+      <EngravedFrame />
 
-        {/* Desktop layout — Image on right */}
-        <div className="hidden md:grid md:grid-cols-3 md:gap-0 md:items-stretch">
-          <div className={`md:col-span-2 flex flex-col justify-center p-8 md:p-12 ${isVisible ? 'animate-slide-in-left' : 'opacity-0'}`}>
-            <div className="text-center mb-8">
-              <div className={`inline-flex items-center gap-2 mb-4 justify-center ${isVisible ? 'animate-slide-up-delay-300' : 'opacity-0'}`}>
-                <MapPin className="w-5 h-5" style={{ color: theme?.colors.primary }} />
-                <span className="text-sm font-medium uppercase tracking-wider" style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}>
-                  Ubicación
-                </span>
-              </div>
-              <h2
-                className={`text-3xl md:text-4xl font-bold mb-2 ${isVisible ? 'animate-slide-up-delay-400' : 'opacity-0'}`}
-                style={{ fontFamily: theme?.fonts.heading, color: theme?.colors.text }}
-              >
-                ¿Dónde celebraremos?
-              </h2>
-              <p className="max-w-xl mx-auto" style={{ color: theme?.colors.accent, fontFamily: theme?.fonts.body }}>
-                {address}
-              </p>
-            </div>
-            {mapCard}
-          </div>
+      <TamedPhoto src={upUp} alt="Melina y Santiago" height={260} />
 
-          <div className={isVisible ? 'animate-slide-in-right' : 'opacity-0'}>
-            <img src={upUp} alt="Couple photo" className="w-full h-full object-cover rounded-r-2xl" />
+      <div style={{
+        position: "relative",
+        zIndex: 3,
+        flex: 1,
+        padding: "0 46px 52px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+      }}>
+        <InViewFade>
+          <Overline style={{ marginTop: 4, color: C.glaucous }}>Ubicación</Overline>
+        </InViewFade>
+        <InViewFade delay={0.1}>
+          <h2 style={{
+            fontFamily: "Playfair Display, serif",
+            fontStyle: "italic",
+            fontWeight: 400,
+            fontSize: 28,
+            color: C.ink,
+            marginTop: 8,
+          }}>
+            ¿Dónde celebraremos?
+          </h2>
+        </InViewFade>
+        <InViewFade delay={0.15}>
+          <p style={{
+            fontFamily: "Playfair Display, serif",
+            fontStyle: "italic",
+            fontSize: 14,
+            color: C.taupe,
+            marginTop: 8,
+          }}>
+            Salón Sanmarinense
+          </p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: 12.5, color: C.glaucous, marginTop: 3, letterSpacing: ".02em" }}>
+            Pergamino, Buenos Aires, Argentina
+          </p>
+        </InViewFade>
+        <InViewFade delay={0.2}>
+          <Flourish style={{ margin: "20px 0" }} />
+        </InViewFade>
+
+        {/* Mapa con keyline mocha, sepia via CSS, sin card/sombra */}
+        <InViewFade delay={0.25} style={{ width: "100%" }}>
+          <div style={{
+            width: "100%",
+            border: `1px solid rgba(75,53,42,.45)`,
+            overflow: "hidden",
+          }}>
+            <style>{`
+              .leaflet-tile-pane {
+                filter: sepia(.55) saturate(.75) brightness(1.03) contrast(.92) hue-rotate(-8deg);
+              }
+              .leaflet-attribution-flag { display: none !important; }
+              .leaflet-control-attribution {
+                font-family: Inter, sans-serif;
+                font-size: 9px;
+                color: #8B7866;
+                background: rgba(247,243,238,.75);
+              }
+              .leaflet-control-attribution a { color: #607C9A; }
+            `}</style>
+            <MapContainer
+              center={COORDS}
+              zoom={15}
+              style={{ height: 240, width: "100%" }}
+              scrollWheelZoom={false}
+              zoomControl={false}
+            >
+              <TileLayer
+                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>'
+              />
+              <Marker position={COORDS} icon={diamondMarker} />
+              <MapFixer />
+            </MapContainer>
           </div>
-        </div>
+        </InViewFade>
+
+        <InViewFade delay={0.3} style={{ width: "100%", marginTop: 20}}>
+          <OutlineLink href={MAPS_URL} target="_blank" rel="noopener noreferrer" accentColor={C.ink}>
+            Cómo llegar
+          </OutlineLink>
+        </InViewFade>
       </div>
-    </div>
+    </Paper>
   );
 };
 

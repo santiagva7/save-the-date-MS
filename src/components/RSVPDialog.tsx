@@ -1,19 +1,12 @@
 import { useState, useEffect } from "react";
-import { Check, Mail } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 import CardPrice from "./CardPrice";
+import { C, OutlineButton, LineInput } from "./shared";
 
 interface GuestInfo {
   name: string;
@@ -29,16 +22,15 @@ const RSVPDialog = () => {
   const [formData, setFormData] = useState({
     name: "",
     attendance: "yes",
-    message: "",
+    dietary: "",
     songRequest: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    // Obtener nombre del invitado desde localStorage
-    const guestInfo = localStorage.getItem("guestInfo");
-    if (guestInfo) {
-      const guest: GuestInfo = JSON.parse(guestInfo);
+    const raw = localStorage.getItem("guestInfo");
+    if (raw) {
+      const guest: GuestInfo = JSON.parse(raw);
       setGuestName(guest.name);
       setGuestPrice(guest.price);
       setGuestHelp(guest.help);
@@ -48,47 +40,29 @@ const RSVPDialog = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Save to localStorage
-    const existingRSVPs = JSON.parse(localStorage.getItem("rsvps") || "[]");
-    existingRSVPs.push({
-      ...formData,
-      timestamp: new Date().toISOString(),
-    });
-    localStorage.setItem("rsvps", JSON.stringify(existingRSVPs));
-    
-    // Generar mensaje para WhatsApp
-    const attendanceText = formData.attendance === "yes" ? "Gracias por la invitación, ahí voy a estar" : "No voy a poder asistir a su boda";
-    let whatsappMessage = `Hola Santi, soy ${formData.name}.\n\n${attendanceText}${formData.message ? `\n\nTe recuerdo que en la comida no consumo: ${formData.message}` : ""}${formData.songRequest ? `\n\nMe gustaría que en la boda esté: ${formData.songRequest}` : ""}`;
-    
-    // Si tiene que pagar tarjeta, agregar el texto del comprobante
-    if (guestPrice) {
-      whatsappMessage += `\n\nTambién te adjunto el comprobante de transferencia`;
-    }
-    
-    whatsappMessage += `\n\n¡Muchas gracias!`;
-    
-    // Codificar el mensaje para URL
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappPhone = "542948450880"; // Sin caracteres especiales
-    const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodedMessage}`;
-    
+    const existing = JSON.parse(localStorage.getItem("rsvps") || "[]");
+    existing.push({ ...formData, timestamp: new Date().toISOString() });
+    localStorage.setItem("rsvps", JSON.stringify(existing));
+
+    const attendanceText = formData.attendance === "yes"
+      ? "Gracias por la invitación, ahí voy a estar"
+      : "No voy a poder asistir a su boda";
+
+    let msg = `Hola Santi, soy ${formData.name}.\n\n${attendanceText}`;
+    if (formData.dietary) msg += `\n\nTe recuerdo que en la comida no consumo: ${formData.dietary}`;
+    if (formData.songRequest) msg += `\n\nMe gustaría que en la boda esté: ${formData.songRequest}`;
+    if (guestPrice) msg += `\n\nTambién te adjunto el comprobante de transferencia`;
+    msg += `\n\n¡Muchas gracias!`;
+
+    const whatsappUrl = `https://wa.me/542948450880?text=${encodeURIComponent(msg)}`;
     setIsSubmitted(true);
     toast.success("¡Confirmación recibida! Gracias por responder.");
-    
-    // Abrir WhatsApp después de un pequeño delay
     setTimeout(() => {
       window.open(whatsappUrl, "_blank");
-      
       setTimeout(() => {
         setOpen(false);
         setIsSubmitted(false);
-        setFormData({
-          name: "",
-          attendance: "yes",
-          message: "",
-          songRequest: "",
-        });
+        setFormData({ name: "", attendance: "yes", dietary: "", songRequest: "" });
       }, 100);
     }, 150);
   };
@@ -96,106 +70,182 @@ const RSVPDialog = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          size="lg"
-          className="bg-wedding-gold hover:bg-wedding-gold/90 text-foreground font-medium text-lg px-8 py-6 shadow-[var(--shadow-elegant)]"
-        >
-          <Mail className="mr-2 h-5 w-5" />
-          Confirmar asistencia
-        </Button>
+        <OutlineButton type="button">Confirmar asistencia</OutlineButton>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md w-full max-h-[90vh] overflow-y-auto flex flex-col items-center justify-center">
-        <DialogHeader className="w-full">
-          <DialogTitle className="font-playfair text-2xl text-center">
-            Confirmación
-          </DialogTitle>
-          <DialogDescription className="text-center">
-            Por favor, confirma tu asistencia a nuestra boda
-          </DialogDescription>
-        </DialogHeader>
 
-        {!isSubmitted ? (
-          <form onSubmit={handleSubmit} className="space-y-4 pb-4 w-full">
-            <div className="space-y-2">
-              <Label>Nombre</Label>
-              <div className="p-3 bg-muted rounded-md text-foreground font-medium">
-                {guestName || "Cargando..."}
-              </div>
-            </div>
+      <DialogContent
+        className="p-0 border-none shadow-none bg-transparent max-w-[430px] w-full"
+        style={{ boxShadow: "none", border: "none", borderRadius: 0, padding: 0, background: "transparent" }}
+      >
+        {/* Modal — hoja parchment con filete grabado */}
+        <div style={{
+          position: "relative",
+          background: C.parchment,
+          boxShadow: "0 30px 80px rgba(20,14,10,.45)",
+          padding: "48px 46px 44px",
+          maxHeight: "90vh",
+          overflowY: "auto",
+        }}>
+          {/* Doble filete (inset reducido para modal) */}
+          <div aria-hidden style={{ position: "absolute", inset: 14, border: "1.5px solid rgba(75,53,42,.55)", pointerEvents: "none", zIndex: 5 }} />
+          <div aria-hidden style={{ position: "absolute", inset: 20, border: ".75px solid rgba(197,162,83,.65)", pointerEvents: "none", zIndex: 5 }} />
 
-            {guestPrice && <CardPrice price={guestPrice} currency="USD" />}
-
-            <div className="space-y-2">
-              <Label>¿Asistirás?</Label>
-              <RadioGroup
-                value={formData.attendance}
-                onValueChange={(value) => setFormData({ ...formData, attendance: value })}
-              >
-                <div className="flex items-center min-h-[44px] gap-3">
-                  <RadioGroupItem value="yes" id="yes" className="h-5 w-5 border-2 border-wedding-gold text-wedding-gold" />
-                  <Label htmlFor="yes" className="font-normal cursor-pointer">
-                    Sí, allí estaré
-                  </Label>
-                </div>
-                <div className="flex items-center min-h-[44px] gap-3">
-                  <RadioGroupItem value="no" id="no" className="h-5 w-5 border-2 border-wedding-gold text-wedding-gold" />
-                  <Label htmlFor="no" className="font-normal cursor-pointer">
-                    No podré asistir
-                  </Label>
-                </div>
-              </RadioGroup>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="message">¿Tenés alguna restricción alimentaria? Contanos qué no podes comer</Label>
-              <Input
-                id="message"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Ejemplo: Carne, TACC, lácteos..."
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="songRequest">¿Qué canciones no pueden faltar en la fiesta? Máximo 2</Label>
-              <Input
-                id="songRequest"
-                value={formData.songRequest}
-                onChange={(e) => setFormData({ ...formData, songRequest: e.target.value })}
-                placeholder="Ejemplo: Cae el sol - Airbag"
-              />
-            </div>
-
-            {guestHelp && (
-              <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
-                <p className="text-sm text-amber-800">{guestHelp}</p>
-              </div>
-            )}
-
-            {guestPrice && (
-              <div>
-                <p className="font-medium text-foreground mb-1">Por favor adjunta tu comprobante junto con el mensaje de asistencia </p>
-              </div>
-            )}
-
-            <Button
-              type="submit"
-              className="w-full bg-wedding-gold hover:bg-wedding-gold/90 text-foreground font-medium"
-            >
-              Enviar confirmación
-            </Button>
-          </form>
-        ) : (
-          <div className="py-8 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent mb-4">
-              <Check className="w-8 h-8 text-wedding-gold" />
-            </div>
-            <p className="text-lg font-medium">¡Confirmación recibida!</p>
-            <p className="text-sm text-muted-foreground mt-2">
-              Gracias por confirmar tu asistencia
+          <div style={{ position: "relative", zIndex: 3, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+            <h2 style={{
+              fontFamily: "Playfair Display, serif",
+              fontStyle: "italic",
+              fontWeight: 400,
+              fontSize: 26,
+              color: C.ink,
+            }}>
+              Confirmación
+            </h2>
+            <p style={{
+              fontFamily: "Playfair Display, serif",
+              fontStyle: "italic",
+              fontSize: 13.5,
+              color: C.taupe,
+              marginTop: 6,
+            }}>
+              Por favor, confirmá tu asistencia
             </p>
+
+            {!isSubmitted ? (
+              <form onSubmit={handleSubmit} style={{ width: "100%", marginTop: 28, display: "flex", flexDirection: "column", gap: 22, textAlign: "left" }}>
+
+                {/* Nombre (readonly) */}
+                <div>
+                  <p style={{ fontFamily: "Playfair Display, serif", fontSize: 11, letterSpacing: ".24em", textTransform: "uppercase", color: C.glaucous, marginBottom: 6 }}>
+                    Nombre
+                  </p>
+                  <p style={{ fontFamily: "Playfair Display, serif", fontStyle: "italic", fontSize: 16, color: C.ink }}>
+                    {guestName || "—"}
+                  </p>
+                </div>
+
+                {guestPrice && <CardPrice price={guestPrice} currency="USD" />}
+
+                {/* ¿Asistirás? — radios con rombo dorado */}
+                <div>
+                  <p style={{ fontFamily: "Playfair Display, serif", fontSize: 11, letterSpacing: ".24em", textTransform: "uppercase", color: C.glaucous, marginBottom: 8 }}>
+                    ¿Asistirás?
+                  </p>
+                  {[
+                    { value: "yes", label: "Sí, allí estaré" },
+                    { value: "no",  label: "No podré asistir" },
+                  ].map(opt => (
+                    <label key={opt.value} style={{ display: "flex", alignItems: "center", gap: 13, cursor: "pointer", padding: "9px 0" }}>
+                      <input
+                        type="radio"
+                        name="attendance"
+                        value={opt.value}
+                        checked={formData.attendance === opt.value}
+                        onChange={() => setFormData({ ...formData, attendance: opt.value })}
+                        style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                      />
+                      {/* Mark: círculo hairline, con rombo dorado cuando seleccionado */}
+                      <span style={{
+                        width: 16, height: 16,
+                        border: `1px solid ${formData.attendance === opt.value ? C.gold : "rgba(75,53,42,.5)"}`,
+                        borderRadius: "50%",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        flexShrink: 0,
+                        transition: "border-color .2s",
+                      }}>
+                        {formData.attendance === opt.value && (
+                          <span style={{ width: 7, height: 7, background: C.gold, transform: "rotate(45deg)", display: "block" }} />
+                        )}
+                      </span>
+                      <span style={{
+                        fontFamily: "Playfair Display, serif",
+                        fontStyle: "italic",
+                        fontSize: 15,
+                        color: C.ink,
+                      }}>
+                        {opt.label}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+
+                {/* Restricción alimentaria */}
+                <LineInput
+                  label="Restricción alimentaria"
+                  placeholder="Ej: Sin TACC, sin lácteos..."
+                  value={formData.dietary}
+                  onChange={e => setFormData({ ...formData, dietary: e.target.value })}
+                />
+
+                {/* Canción */}
+                <div>
+                  <p style={{ fontFamily: "Playfair Display, serif", fontSize: 11, letterSpacing: ".24em", textTransform: "uppercase", color: C.glaucous, marginBottom: 4 }}>
+                    Canciones (máx. 2)
+                  </p>
+                  <p style={{ fontFamily: "Playfair Display, serif", fontStyle: "italic", fontSize: 13.5, color: C.ink, lineHeight: 1.4, marginBottom: 6 }}>
+                    ¿Qué canciones no pueden faltar?
+                  </p>
+                  <input
+                    placeholder="Ej: Cae el sol — Airbag"
+                    value={formData.songRequest}
+                    onChange={e => setFormData({ ...formData, songRequest: e.target.value })}
+                    onFocus={e => e.currentTarget.style.borderBottomColor = C.glaucous}
+                    onBlur={e => e.currentTarget.style.borderBottomColor = "rgba(75,53,42,.35)"}
+                    style={{
+                      width: "100%", background: "transparent", border: "none",
+                      borderBottom: "1px solid rgba(75,53,42,.35)", padding: "9px 2px",
+                      fontFamily: "Inter, sans-serif", fontSize: 14, color: C.ink,
+                      outline: "none", caretColor: C.glaucous, transition: "border-color .25s",
+                    }}
+                  />
+                </div>
+
+                {/* Nota "venís de lejos" — italic taupe con filete dorado, NO caja amarilla */}
+                {guestHelp && (
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, textAlign: "center", marginTop: 4 }}>
+                    <div style={{ width: 40, height: 1, background: C.gold }} />
+                    <p style={{
+                      fontFamily: "Playfair Display, serif",
+                      fontStyle: "italic",
+                      fontSize: 13.5,
+                      lineHeight: 1.55,
+                      color: C.taupe,
+                      maxWidth: 300,
+                    }}>
+                      {guestHelp}
+                    </p>
+                  </div>
+                )}
+
+                {guestPrice && (
+                  <p style={{ fontFamily: "Playfair Display, serif", fontStyle: "italic", fontSize: 13, color: C.taupe, textAlign: "center" }}>
+                    Por favor adjuntá tu comprobante junto con el mensaje de asistencia.
+                  </p>
+                )}
+
+                <OutlineButton type="submit" style={{ marginTop: 4 }}>
+                  Enviar confirmación
+                </OutlineButton>
+              </form>
+            ) : (
+              <div style={{ padding: "32px 0", textAlign: "center" }}>
+                {/* Rombo dorado como ícono de éxito */}
+                <div style={{
+                  width: 40, height: 40,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  margin: "0 auto 16px",
+                }}>
+                  <div style={{ width: 18, height: 18, background: C.gold, transform: "rotate(45deg)" }} />
+                </div>
+                <p style={{ fontFamily: "Playfair Display, serif", fontStyle: "italic", fontSize: 17, color: C.ink }}>
+                  ¡Confirmación recibida!
+                </p>
+                <p style={{ fontFamily: "Inter, sans-serif", fontSize: 12.5, color: C.taupe, marginTop: 8 }}>
+                  Gracias por confirmar tu asistencia
+                </p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </DialogContent>
     </Dialog>
   );

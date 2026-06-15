@@ -70,6 +70,15 @@ export default {
           beige: "hsl(var(--wedding-beige))",
           cream: "hsl(var(--wedding-cream))",
         },
+        // Paleta oficial boda
+        parchment: "#F7F3EE",
+        "parchment-2": "#EFE6DA",
+        bone: "#D8CBBE",
+        "golden-bronze": "#C5A253",
+        "deep-mocha": "#4B352A",
+        glaucous: "#607C9A",
+        taupe: "#8B7866",
+        "table-bg": "#2b2622",
       },
       borderRadius: {
         lg: "var(--radius)",

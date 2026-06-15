@@ -1,160 +1,185 @@
-import { Gift, Copy, Check } from "lucide-react";
 import { useState } from "react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { C, Paper, EngravedFrame, Overline, Flourish, InViewFade } from "./shared";
 
 interface GiftOption {
   bank: string;
-  accountHolder: string;
+  holder: string;
   alias: string;
-  accountType: string;
   cbu?: string;
+  accountType: string;
 }
 
+const GIFTS: GiftOption[] = [
+  {
+    bank: "Brubank",
+    holder: "Santiago Agustín Villar Araya",
+    alias: "villar.araya.santiago",
+    cbu: "0170123456789012345678",
+    accountType: "Cuenta Corriente",
+  },
+  {
+    bank: "Mercado Pago",
+    holder: "Melina Capel",
+    alias: "melina.capel",
+    cbu: "0720987654321098765432",
+    accountType: "Cuenta de Ahorro",
+  },
+];
+
+const Row = ({ label, value, onCopy, copied }: { label: string; value: string; onCopy: () => void; copied: boolean }) => (
+  <div style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "baseline",
+    gap: 8,
+    padding: "10px 0",
+    borderBottom: "1px solid rgba(75,53,42,.12)",
+  }}>
+    <div>
+      <p style={{
+        fontFamily: "Playfair Display, serif",
+        fontSize: 10.5,
+        letterSpacing: ".24em",
+        textTransform: "uppercase",
+        color: C.glaucous,
+        marginBottom: 3,
+      }}>
+        {label}
+      </p>
+      <p style={{
+        fontFamily: "Playfair Display, serif",
+        fontSize: 15,
+        color: C.ink,
+        letterSpacing: ".06em",
+        fontVariantNumeric: "tabular-nums",
+      }}>
+        {value}
+      </p>
+    </div>
+    <button
+      onClick={onCopy}
+      style={{
+        fontFamily: "Inter, sans-serif",
+        fontSize: 11.5,
+        color: copied ? C.taupe : C.gold,
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        flexShrink: 0,
+        transition: "color .2s",
+        padding: 0,
+      }}
+    >
+      {copied ? "Copiado ✓" : "Copiar"}
+    </button>
+  </div>
+);
+
 const GiftRegistry = () => {
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
 
-  const giftOptions: GiftOption[] = [
-    {
-      bank: "Brubank",
-      accountHolder: "Santiago Agustín Villar Araya",
-      alias: "1234567890",
-      accountType: "Cuenta Corriente",
-      cbu: "0170123456789012345678"
-    },
-    {
-      bank: "Mercado Pago",
-      accountHolder: "Melina Capel",
-      alias: "9876543210",
-      accountType: "Cuenta de Ahorro",
-      cbu: "0720987654321098765432"
-    }
-  ];
-
-  const handleCopy = (text: string, index: number) => {
+  const handleCopy = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
+    setCopied(key);
+    setTimeout(() => setCopied(null), 2000);
   };
 
-  const { ref, isVisible } = useScrollAnimation();
-
   return (
-    <div ref={ref} className="w-full py-12 px-4 bg-gradient-to-b from-white to-wedding-gold/5">
-      <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className={`inline-flex items-center gap-2 mb-6 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
-            <Gift className="w-5 h-5 text-wedding-gold" />
-            <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-              Regalos
-            </span>
-          </div>
-          <p className={`font-playfair text-3xl md:text-5xl font-light mb-6 leading-relaxed ${isVisible ? 'animate-slide-up-delay-200' : 'opacity-0'}`}>
+    <Paper>
+      <EngravedFrame />
+
+      <div style={{
+        position: "relative",
+        zIndex: 3,
+        flex: 1,
+        padding: "64px 46px 52px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+      }}>
+        <InViewFade>
+          <Overline style={{color: C.glaucous}}>Regalos</Overline>
+        </InViewFade>
+        <InViewFade delay={0.1}>
+          <h2 style={{
+            fontFamily: "Playfair Display, serif",
+            fontStyle: "italic",
+            fontWeight: 400,
+            fontSize: 26,
+            color: C.ink,
+            marginTop: 10,
+            lineHeight: 1.2,
+          }}>
             Tu presencia es el mejor presente
+          </h2>
+        </InViewFade>
+        <InViewFade delay={0.15}>
+          <p style={{
+            fontFamily: "Playfair Display, serif",
+            fontStyle: "italic",
+            fontSize: 14,
+            color: C.taupe,
+            lineHeight: 1.65,
+            marginTop: 14,
+            maxWidth: 310,
+          }}>
+            Pero si deseás colaborar con un regalo, el dinero nos será de mucha utilidad. Podés depositarlo en cualquiera de las siguientes cuentas.
           </p>
-          <p className={`text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed ${isVisible ? 'animate-slide-up-delay-400' : 'opacity-0'}`}>
-            Sabemos el esfuerzo que representa acompañarnos en este día tan especial. Si deseás colaborar con un regalo, el dinero nos será de utilidad. Podés depositarlo en cualquiera de las siguientes cuentas.
-          </p>
-        </div>
+        </InViewFade>
+        <InViewFade delay={0.2}>
+          <Flourish style={{ margin: "24px 0" }} />
+        </InViewFade>
 
-        {/* Gift Options */}
-        <div className="space-y-6">
-          {giftOptions.map((option, index) => (
-            <div
-              key={index}
-              className={`bg-card rounded-lg p-8 shadow-sm border border-wedding-gold/20 hover:border-wedding-gold/50 hover:shadow-md transition-all duration-300 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}
-              style={{ animationDelay: isVisible ? `${index * 0.2}s` : '0s' }}
-            >
-              <h3 className="font-playfair text-2xl font-bold mb-6 text-wedding-gold">
-                {option.bank}
-              </h3>
+        {/* Bloques de cuenta */}
+        <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 0 }}>
+          {GIFTS.map((g, i) => (
+            <div key={i}>
+              <InViewFade delay={0.1 + i * 0.1} style={{ width: "100%", textAlign: "left" }}>
+                {/* Nombre del banco — Playfair italic golden-bronze */}
+                <p style={{
+                  fontFamily: "Playfair Display, serif",
+                  fontStyle: "italic",
+                  fontSize: 20,
+                  color: C.gold,
+                  marginBottom: 4,
+                }}>
+                  {g.bank}
+                </p>
 
-              <div className="space-y-4">
-                {/* Account Holder */}
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground mb-2">
-                    Titular de la Cuenta
-                  </p>
-                  <div className="flex items-center justify-between bg-muted/50 rounded p-3">
-                    <span className="font-medium">{option.accountHolder}</span>
-                    <button
-                      onClick={() => handleCopy(option.accountHolder, index)}
-                      className="text-wedding-gold hover:text-wedding-gold/80 transition-colors"
-                      title="Copiar"
-                    >
-                      {copiedIndex === index ? (
-                        <Check className="w-4 h-4" />
-                      ) : (
-                        <Copy className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Account Number */}
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground mb-2">
-                    Número de Cuenta
-                  </p>
-                  <div className="flex items-center justify-between bg-muted/50 rounded p-3">
-                    <span className="font-medium font-mono">{option.alias}</span>
-                    <button
-                      onClick={() => handleCopy(option.alias, index)}
-                      className="text-wedding-gold hover:text-wedding-gold/80 transition-colors"
-                      title="Copiar"
-                    >
-                      {copiedIndex === index ? (
-                        <Check className="w-4 h-4" />
-                      ) : (
-                        <Copy className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Account Type */}
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground mb-2">
-                    Tipo de Cuenta
-                  </p>
-                  <p className="text-sm">{option.accountType}</p>
-                </div>
-
-                {/* CBU if available */}
-                {option.cbu && (
-                  <div>
-                    <p className="text-sm font-medium text-muted-foreground mb-2">
-                      CBU
-                    </p>
-                    <div className="flex items-center justify-between bg-muted/50 rounded p-3">
-                      <span className="font-medium font-mono text-sm">{option.cbu}</span>
-                      <button
-                        onClick={() => handleCopy(option.cbu!, index)}
-                        className="text-wedding-gold hover:text-wedding-gold/80 transition-colors"
-                        title="Copiar"
-                      >
-                        {copiedIndex === index ? (
-                          <Check className="w-4 h-4" />
-                        ) : (
-                          <Copy className="w-4 h-4" />
-                        )}
-                      </button>
-                    </div>
-                  </div>
+                <Row
+                  label="Titular"
+                  value={g.holder}
+                  onCopy={() => handleCopy(g.holder, `${i}-holder`)}
+                  copied={copied === `${i}-holder`}
+                />
+                <Row
+                  label="Alias"
+                  value={g.alias}
+                  onCopy={() => handleCopy(g.alias, `${i}-alias`)}
+                  copied={copied === `${i}-alias`}
+                />
+                {g.cbu && (
+                  <Row
+                    label="CBU"
+                    value={g.cbu}
+                    onCopy={() => handleCopy(g.cbu!, `${i}-cbu`)}
+                    copied={copied === `${i}-cbu`}
+                  />
                 )}
-              </div>
+                <div style={{ height: 1, background: "rgba(75,53,42,.12)" }} />
+              </InViewFade>
+
+              {i < GIFTS.length - 1 && (
+                <InViewFade delay={0.25} style={{ display: "flex", justifyContent: "center" }}>
+                  <Flourish ruleWidth={36} style={{ margin: "24px 0" }} />
+                </InViewFade>
+              )}
             </div>
           ))}
         </div>
-
-        {/* Note */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground italic">
-            Gracias por ser parte de nuestro día especial.
-          </p>
-        </div>
       </div>
-    </div>
+    </Paper>
   );
 };
 
