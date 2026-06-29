@@ -155,7 +155,7 @@ export const HeroSection = ({ guest }: HeroSectionProps) => {
               }}
               {...fade(0.45, 1.4)}
             >
-              Melina &amp; Santiago
+              M & S
             </motion.div>
 
             {/* "Reservá la fecha" */}

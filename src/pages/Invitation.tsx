@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GuestInfo } from "@/data/guestCodes";
+import Cover from "@/components/Cover";
 import Countdown from "@/components/Countdown";
 import Timeline from "@/components/Timeline";
 import Location from "@/components/Location";
@@ -28,6 +29,7 @@ const Invitation = () => {
 
   return (
     <div>
+      <Cover />
       <HeroSection guest={guest} />
       <Countdown />
       <Timeline />

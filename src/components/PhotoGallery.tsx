@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import backTruck from "@/assets/back-truck.jpg";
 import extendedKiss from "@/assets/extended-hand-kiss.jpg";
-import handsBack from "@/assets/hands_back.jpg";
+import handsBack from "@/assets/hands-back.jpg";
 import upUp from "@/assets/upup.jpg";
 
 const images = [backTruck, extendedKiss, handsBack, upUp];

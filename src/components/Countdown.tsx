@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import handsBack from "@/assets/hands_back.jpg";
+import handsBack from "@/assets/hands-back.jpg";
 import { C, Paper, EngravedFrame, Overline, Flourish, InViewFade } from "./shared";
 
 interface TimeLeft {
