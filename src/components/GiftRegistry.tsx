@@ -11,17 +11,17 @@ interface GiftOption {
 
 const GIFTS: GiftOption[] = [
   {
-    bank: "Brubank",
+    bank: "Mercado Pago",
     holder: "Santiago Agustín Villar Araya",
-    alias: "villar.araya.santiago",
-    cbu: "0170123456789012345678",
+    alias: "santiago-villara",
+    cbu: "0000003100060809462720",
     accountType: "Cuenta Corriente",
   },
   {
     bank: "Mercado Pago",
     holder: "Melina Capel",
-    alias: "melina.capel",
-    cbu: "0720987654321098765432",
+    alias: "melinacapel2",
+    cbu: "0000003100021509545319",
     accountType: "Cuenta de Ahorro",
   },
 ];

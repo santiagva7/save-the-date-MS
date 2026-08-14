@@ -203,8 +203,8 @@ export const HeroSection = ({ guest }: HeroSectionProps) => {
               {/* Civil */}
               <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6, padding: "0 6px" }}>
                 <span style={{ fontFamily: "Playfair Display, serif", fontSize: 11, letterSpacing: ".34em", textTransform: "uppercase", color: ink }}>Civil</span>
-                <span style={{ fontFamily: "Playfair Display, serif", fontSize: 18, color: ink }}>8 de Enero, 2027</span>
-                <span style={{ fontSize: 13, color: taupe, letterSpacing: ".02em" }}>10:00 h</span>
+                <span style={{ fontFamily: "Playfair Display, serif", fontSize: 18, color: ink }}>Fecha a confirmar</span>
+                <span style={{ fontSize: 13, color: taupe, letterSpacing: ".02em" }}>Horario a confirmar</span>
               </div>
 
               {/* Hairline separator */}
@@ -214,7 +214,7 @@ export const HeroSection = ({ guest }: HeroSectionProps) => {
               <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6, padding: "0 6px" }}>
                 <span style={{ fontFamily: "Playfair Display, serif", fontSize: 11, letterSpacing: ".34em", textTransform: "uppercase", color: ink }}>Ceremonia</span>
                 <span style={{ fontFamily: "Playfair Display, serif", fontSize: 18, color: ink }}>10 de Enero, 2027</span>
-                <span style={{ fontSize: 13, color: taupe, letterSpacing: ".02em" }}>19:30 h</span>
+                <span style={{ fontSize: 13, color: taupe, letterSpacing: ".02em" }}>Horario a confirmar</span>
               </div>
             </motion.div>
 
@@ -243,25 +243,40 @@ export const HeroSection = ({ guest }: HeroSectionProps) => {
             style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}
             {...fade(2.1, 1.0)}
           >
-            {/* Music button — hairline circle */}
-            <button
-              onClick={toggleMusic}
-              aria-label={playing ? "Pausar música" : "Reproducir música"}
-              style={{
-                width: 38, height: 38,
-                border: "1px solid rgba(75,53,42,.4)",
-                borderRadius: "50%",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                background: "transparent",
-                cursor: "pointer",
-                color: ink,
-                transition: "border-color .2s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = ink)}
-              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(75,53,42,.4)")}
-            >
-              {playing ? <PauseIcon /> : <MusicNote />}
-            </button>
+            {/* Music button — hairline circle + hint */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+              <button
+                onClick={toggleMusic}
+                aria-label={playing ? "Pausar música" : "Reproducir música"}
+                style={{
+                  width: 38, height: 38,
+                  border: "1px solid rgba(75,53,42,.4)",
+                  borderRadius: "50%",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: "transparent",
+                  cursor: "pointer",
+                  color: ink,
+                  transition: "border-color .2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = ink)}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(75,53,42,.4)")}
+              >
+                {playing ? <PauseIcon /> : <MusicNote />}
+              </button>
+              <span
+                aria-hidden
+                style={{
+                  fontFamily: "Playfair Display, serif",
+                  fontSize: 9.5,
+                  letterSpacing: ".24em",
+                  textTransform: "uppercase",
+                  color: taupe,
+                  paddingLeft: ".24em",
+                }}
+              >
+                {playing ? "Tocá para pausar" : "Tocá para escuchar"}
+              </span>
+            </div>
 
             {/* Chevron scroll hint — floats gently */}
             <motion.div

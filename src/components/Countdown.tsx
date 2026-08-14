@@ -88,7 +88,6 @@ const Countdown = () => {
         <InViewFade style={{ width: "100%" }}>
           <div style={{
             width: "100%",
-            border: `1px solid rgba(75,53,42,.45)`,
             padding: 7,
             background: C.parchment,
           }}>

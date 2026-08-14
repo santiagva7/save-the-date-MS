@@ -6,7 +6,9 @@ interface CardPriceProps {
   currency?: string;
 }
 
-const CardPrice = ({ price, currency = "USD" }: CardPriceProps) => {
+const CardPrice = ({ price, currency = "ARS" }: CardPriceProps) => {
+  const formattedPrice = price.toLocaleString("es-AR");
+
   return (
     <Alert className="border-wedding-gold/30 bg-wedding-gold/5 mb-6">
       <div className="flex items-start gap-3">
@@ -14,10 +16,10 @@ const CardPrice = ({ price, currency = "USD" }: CardPriceProps) => {
         <AlertDescription className="text-sm">
           <p className="font-medium font bold text-foreground mb-1">Valor de la tarjeta</p>
           <p className="text-wedding-gold font-semibold text-lg">
-            ${price} {currency}
+            ${formattedPrice} {currency}
           </p>
           <p className="text-xs text-muted-foreground mt-2">
-            Podes pagar en pesos argentinos con el valor del dolar del día!
+            Como todo en Argentina, este valor puede ajustarse más adelante… así que cuanto antes lo abones, mejor para todos!
           </p>
         </AlertDescription>
       </div>

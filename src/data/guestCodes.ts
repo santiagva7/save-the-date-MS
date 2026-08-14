@@ -257,7 +257,7 @@ export const guestCodes: GuestInfo[] = [
     code: "AMBB2027",
     name: "Ámbar Biglieri",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "OTOH2027",
@@ -288,19 +288,19 @@ export const guestCodes: GuestInfo[] = [
     code: "YESO2027",
     name: "Yesica Ortega",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "PABB2027",
     name: "Pablo Broglio",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "CECO2027",
     name: "Cecilia Ortega",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "CRIB2027",
@@ -316,43 +316,43 @@ export const guestCodes: GuestInfo[] = [
     code: "WALC2027",
     name: "Walter Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "NAHC2027",
     name: "Nahuel Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "DAMC2027",
     name: "Damián Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "CLAC2027",
     name: "Claudia Carricaburro",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "ALAC2027",
     name: "Alan Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "BRIB2027",
     name: "Brisa Barbieri",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "MATC2027",
     name: "Matias Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "TOMC2027",
@@ -368,67 +368,67 @@ export const guestCodes: GuestInfo[] = [
     code: "BIAC2027",
     name: "Bianca Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "VANC2027",
     name: "Vanesa Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "ALEM2027",
     name: "Alejandro Mansilla",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "DANC2027",
     name: "Daniel Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "ALIC2027",
     name: "Alicia Capel",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "ROSN2027",
     name: "Rosa Naser",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "MIRN2027",
     name: "Mirta Naser",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "ALFG2027",
     name: "Alfonsina García",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "SILJ2027",
     name: "Silvana Jalaf",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "MABN2027",
     name: "Mabel Naser",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "MIGJ2027",
     name: "Miguel Jalaf",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "BORB2027",
@@ -449,31 +449,31 @@ export const guestCodes: GuestInfo[] = [
     code: "JORD2027",
     name: "Jorge Dabul",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "MARB2027",
     name: "Mariel Bresh",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "NICN2027",
     name: "Nicolas Navarro",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "LUCN2027",
     name: "Lucia Navarro",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "PILN2027",
     name: "Pilar Navarro",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
-    price: 20
+    price: 90000
   },
   {
     code: "AGUS2027",

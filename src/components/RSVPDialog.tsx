@@ -107,6 +107,37 @@ const RSVPDialog = () => {
             }}>
               Por favor, confirmá tu asistencia
             </p>
+            {/* Fecha límite — destacada */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 10,
+              marginTop: 16,
+              padding: "10px 18px",
+              border: `1px solid ${C.gold}`,
+              background: "rgba(197,162,83,.09)",
+            }}>
+              <span style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: 10.5,
+                letterSpacing: ".26em",
+                textTransform: "uppercase",
+                color: C.glaucous,
+                paddingLeft: ".26em",
+              }}>
+                Fecha límite
+              </span>
+              <span aria-hidden style={{ width: 5, height: 5, background: C.gold, transform: "rotate(45deg)", flexShrink: 0 }} />
+              <span style={{
+                fontFamily: "Playfair Display, serif",
+                fontSize: 16,
+                color: C.ink,
+                letterSpacing: ".03em",
+              }}>
+                10 · 12 · 2026
+              </span>
+            </div>
 
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} style={{ width: "100%", marginTop: 28, display: "flex", flexDirection: "column", gap: 22, textAlign: "left" }}>
@@ -121,7 +152,7 @@ const RSVPDialog = () => {
                   </p>
                 </div>
 
-                {guestPrice && <CardPrice price={guestPrice} currency="USD" />}
+                {guestPrice && <CardPrice price={guestPrice} currency="ARS" />}
 
                 {/* ¿Asistirás? — radios con rombo dorado */}
                 <div>

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(node \"C:\\\\Users\\\\Santiago\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Santiago-save-the-date-MS\\\\66e5c25e-c841-47e7-90f6-4cc5fb89d39e\\\\scratchpad\\\\replace-msg.mjs\")"
+      "PowerShell(node \"C:\\\\Users\\\\Santiago\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Santiago-save-the-date-MS\\\\66e5c25e-c841-47e7-90f6-4cc5fb89d39e\\\\scratchpad\\\\replace-msg.mjs\")",
+      "PowerShell(npm run build)"
     ]
   }
 }
