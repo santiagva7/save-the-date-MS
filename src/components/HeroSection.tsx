@@ -135,16 +135,6 @@ export const HeroSection = ({ guest }: HeroSectionProps) => {
 
           {/* ── Zone 1: identity ─────────────────────────────────────────── */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            {/* Rings ornament */}
-            <motion.svg
-              width="40" height="28" viewBox="0 0 44 30" fill="none"
-              style={{ marginBottom: 10 }}
-              {...rise(0.2, 1.0)}
-            >
-              <circle cx="17" cy="15" r="11" stroke={gold} strokeWidth="1.2" />
-              <circle cx="27" cy="15" r="11" stroke={gold} strokeWidth="1.2" />
-            </motion.svg>
-
             {/* Names */}
             <motion.div
               style={{

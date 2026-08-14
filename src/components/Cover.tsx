@@ -30,10 +30,7 @@ const Cover = () => {
         }}
       >
         {/* Anillos */}
-        <div style={{ display: "flex", alignItems: "center", marginBottom: 28 }}>
-          <span style={{ width: 24, height: 24, border: `1.5px solid ${C.gold}`, borderRadius: "50%" }} />
-          <span style={{ width: 24, height: 24, border: `1.5px solid ${C.gold}`, borderRadius: "50%", marginLeft: -9 }} />
-        </div>
+        
 
         {/* Nombres */}
         <div
