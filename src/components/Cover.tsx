@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import backTruck from "@/assets/back-truck.jpg";
+import arco from "@/assets/meli-santi-arco.jpg";
 import { C, Paper, EngravedFrame, Flourish } from "./shared";
 
 /**
@@ -38,7 +38,7 @@ const Cover = () => {
             fontFamily: "'Slight', 'Pinyon Script', cursive",
             fontSize: 58,
             lineHeight: 0.95,
-            color: C.glaucous,
+            color: C.ink,
           }}
         >
           Melina
@@ -71,7 +71,7 @@ const Cover = () => {
         <div style={{ marginTop: 28, width: "100%", flex: 1, minHeight: 0, border: `1px solid ${C.gold}`, padding: 8 }}>
           <div style={{ width: "100%", height: "100%", overflow: "hidden", borderRadius: "160px 160px 6px 6px" }}>
             <img
-              src={backTruck}
+              src={arco}
               alt="Melina y Santiago"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 58%", transform: "scale(1.35)", transformOrigin: "center 60%", display: "block" }}
             />

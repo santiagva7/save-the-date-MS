@@ -29,6 +29,7 @@ const PauseIcon = () => (
 
 // ── Shared style tokens ────────────────────────────────────────────────────────
 const ink = "#4B352A";
+const tableBg = "#2b2622";
 const gold = "#C5A253";
 const glaucous = "#607C9A";
 const taupe = "#8B7866";
@@ -141,7 +142,7 @@ export const HeroSection = ({ guest }: HeroSectionProps) => {
                 fontFamily: "'Slight', 'Pinyon Script', cursive",
                 fontSize: 62,
                 lineHeight: 1.05,
-                color: glaucous,
+                color: ink,
               }}
               {...fade(0.45, 1.4)}
             >
