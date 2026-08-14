@@ -10,7 +10,7 @@ interface TimelineEvent {
 }
 
 const EVENTS: TimelineEvent[] = [
-  { time: "20:00", title: "Recepción",         place: "Patio del salón",    desc: "Bienvenida y aperitivos" },
+  { time: "Horario a confirmar", title: "Recepción",         place: "Patio del salón",    desc: "Bienvenida y aperitivos" },
   { time: "22:00", title: "Cena",              place: "Comedor principal",  desc: "Cena servida a la mesa" },
   { time: "23:30", title: "Brindis y juegos",  place: "Salón principal",    desc: "Brindis especial · Barra abierta" },
 ];

@@ -4,7 +4,7 @@ import { C, Paper, EngravedFrame, Flourish } from "./shared";
 
 /**
  * Portada — primera pantalla de la tarjeta.
- * Anillos, nombres en script, "Nos Casamos", divisor y la foto en ventana con arco.
+ * Anillos, nombres en script, "Nos Casamos", divisor y la foto en ventana rectangular.
  * Usa el sistema visual de la tarjeta (tokens C, Slight, Playfair, marco grabado).
  */
 const Cover = () => {
@@ -67,9 +67,9 @@ const Cover = () => {
         {/* Divisor con diamante */}
         <Flourish style={{ marginTop: 20 }} />
 
-        {/* Ventana — foto con arco */}
-        <div style={{ marginTop: 28, width: "100%", flex: 1, minHeight: 0, border: `1px solid ${C.gold}`, padding: 8 }}>
-          <div style={{ width: "100%", height: "100%", overflow: "hidden", borderRadius: "160px 160px 6px 6px" }}>
+        {/* Ventana — foto rectangular */}
+        <div style={{ marginTop: 28, width: "100%", flex: 1, minHeight: 0, padding: 8 }}>
+          <div style={{ width: "100%", height: "100%", overflow: "hidden" }}>
             <img
               src={arco}
               alt="Melina y Santiago"

@@ -109,7 +109,7 @@ const Login = () => {
               display: "block",
               fontFamily: "'Slight', 'Pinyon Script', cursive",
               fontSize: 52,
-              color: C.glaucous,
+              color: C.ink,
             }}
           >
             Melina
@@ -117,11 +117,10 @@ const Login = () => {
           <span
             style={{
               display: "block",
-              fontFamily: "Playfair Display, serif",
-              fontStyle: "italic",
-              fontSize: 22,
+              fontFamily: "'Slight', 'Pinyon Script', cursive",
+              fontSize: 38,
               color: "#C5A253",
-              margin: "6px 0",
+              margin: "4px 0",
             }}
           >
             &amp;
@@ -131,7 +130,7 @@ const Login = () => {
               display: "block",
               fontFamily: "'Slight', 'Pinyon Script', cursive",
               fontSize: 52,
-              color: C.glaucous,
+              color: C.ink,
             }}
           >
             Santiago
