@@ -170,7 +170,6 @@ export const guestCodes: GuestInfo[] = [
     name: "Lautaro Diaz",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
     help: "Sabemos que venís de lejos, ¡No dudes en consultarle a Santi por las mejores formas de llegar y combinar tus vuelos/colectivos!",
-    price: 90000
   },
   {
     code: "SANC2027",
@@ -204,14 +203,12 @@ export const guestCodes: GuestInfo[] = [
     name: "Cristina Alzugaray",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
     help: "Sabemos que venís de lejos, ¡No dudes en consultarle a Santi por las mejores formas de llegar y combinar tus vuelos/colectivos!",
-    price: 90000
   },
   {
     code: "GUIC2027",
     name: "Guido Cruz",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
     help: "Sabemos que venís de lejos, ¡No dudes en consultarle a Santi por las mejores formas de llegar y combinar tus vuelos/colectivos!",
-    price: 90000
   },
   {
     code: "MATP2027",
