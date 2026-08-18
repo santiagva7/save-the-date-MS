@@ -146,17 +146,17 @@ const InvitationPreview = ({ guest, theme }: InvitationPreviewProps) => {
 
         {/* Countdown Section */}
         <section style={{ backgroundColor: theme.colors.background }}>
-          <Countdown theme={theme} />
+          <Countdown />
         </section>
 
         {/* Timeline Section */}
         <section style={{ backgroundColor: theme.colors.background }}>
-          <Timeline theme={theme} />
+          <Timeline />
         </section>
 
         {/* Location Section */}
         <section>
-          <Location theme={theme} />
+          <Location />
         </section>
 
         {/* Dresscode Section */}

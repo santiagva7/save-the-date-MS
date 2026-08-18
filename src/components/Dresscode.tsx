@@ -1,7 +1,8 @@
 import extendedKiss from "@/assets/extended-hand-kiss.jpg";
 import { C, Paper, EngravedFrame, Overline, Flourish, TamedPhoto, OutlineLink, InViewFade } from "./shared";
 
-const PINTEREST_URL = "https://www.pinterest.com/search/pins/?q=formal%20wedding%20attire";
+const PINTEREST_ELLAS = "https://pin.it/43jLPi8hP";
+const PINTEREST_ELLOS = "https://pin.it/2zeejl0gy";
 
 interface DressOption {
   title: string;
@@ -106,9 +107,12 @@ const Dresscode = () => {
           ))}
         </div>
 
-        <InViewFade delay={0.35} style={{ width: "100%", marginTop: 32 }}>
-          <OutlineLink href={PINTEREST_URL} target="_blank" rel="noopener noreferrer">
-            Ver ideas para vestir
+        <InViewFade delay={0.35} style={{ width: "100%", marginTop: 32, display: "flex", flexDirection: "column", gap: 12 }}>
+          <OutlineLink href={PINTEREST_ELLAS} target="_blank" rel="noopener noreferrer">
+            Ideas para ellas
+          </OutlineLink>
+          <OutlineLink href={PINTEREST_ELLOS} target="_blank" rel="noopener noreferrer">
+            Ideas para ellos
           </OutlineLink>
         </InViewFade>
       </div>
