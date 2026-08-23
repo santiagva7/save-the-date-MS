@@ -51,7 +51,6 @@ const RSVPDialog = () => {
     let msg = `Hola Santi, soy ${formData.name}.\n\n${attendanceText}`;
     if (formData.dietary) msg += `\n\nTe recuerdo que en la comida no consumo: ${formData.dietary}`;
     if (formData.songRequest) msg += `\n\nMe gustaría que en la boda esté: ${formData.songRequest}`;
-    if (guestPrice) msg += `\n\nTambién te adjunto el comprobante de transferencia`;
     msg += `\n\n¡Muchas gracias!`;
 
     const whatsappUrl = `https://wa.me/542948450880?text=${encodeURIComponent(msg)}`;
