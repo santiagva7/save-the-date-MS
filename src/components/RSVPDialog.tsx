@@ -248,7 +248,7 @@ const RSVPDialog = () => {
 
                 {guestPrice && (
                   <p style={{ fontFamily: "Playfair Display, serif", fontStyle: "italic", fontSize: 13, color: C.taupe, textAlign: "center" }}>
-                    Por favor adjuntá tu comprobante junto con el mensaje de asistencia.
+                    Cuando hagas un pago por la tarjeta, mandanos el comprobante!
                   </p>
                 )}
 
