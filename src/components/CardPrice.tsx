@@ -21,6 +21,9 @@ const CardPrice = ({ price, currency = "ARS" }: CardPriceProps) => {
           <p className="text-xs text-muted-foreground mt-2">
             Como todo en Argentina, este valor puede ajustarse más adelante… así que cuanto antes lo abones, mejor para todos!
           </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Podés pagarlo en la cantidad de partes que te resulte más cómoda, siempre que esté completo antes de la fecha límite de confirmación. ¡Gracias!
+          </p>
         </AlertDescription>
       </div>
     </Alert>
