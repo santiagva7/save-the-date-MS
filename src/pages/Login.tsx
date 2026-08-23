@@ -241,7 +241,7 @@ const Login = () => {
                 padding: "10px 4px",
                 textAlign: "center",
                 fontFamily: "Inter, sans-serif",
-                fontSize: 14,
+                fontSize: 16,
                 letterSpacing: "0.34em",
                 textTransform: "uppercase",
                 color: "#4B352A",

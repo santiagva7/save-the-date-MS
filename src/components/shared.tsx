@@ -192,7 +192,7 @@ export const LineInput = forwardRef<HTMLInputElement, LineInputProps>(
             borderBottom: "1px solid rgba(75,53,42,.35)",
             padding: "9px 2px",
             fontFamily: "Inter, sans-serif",
-            fontSize: 14,
+            fontSize: 16,
             color: C.ink,
             outline: "none",
             caretColor: C.glaucous,
