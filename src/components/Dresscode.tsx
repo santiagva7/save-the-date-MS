@@ -23,6 +23,8 @@ const OPTIONS: DressOption[] = [
   },
 ];
 
+const AVOID_COLORS = ["#F6F1E7", "#B7D0E8", "#5D93C4", "#4A6F94"];
+
 const GenderLabel = ({ children }: { children: React.ReactNode }) => (
   <span style={{
     fontFamily: "Playfair Display, serif",
@@ -106,6 +108,45 @@ const Dresscode = () => {
             </div>
           ))}
         </div>
+
+        <InViewFade delay={0.3} style={{ display: "flex", justifyContent: "center" }}>
+          <Flourish ruleWidth={36} style={{ margin: "24px 0" }} />
+        </InViewFade>
+
+        <InViewFade delay={0.3} style={{ width: "100%" }}>
+          <p style={{
+            fontFamily: "Playfair Display, serif",
+            fontStyle: "italic",
+            fontSize: 18,
+            color: C.glaucous,
+            marginBottom: 12,
+          }}>
+            Un pedido especial
+          </p>
+          <p style={{
+            fontFamily: "Playfair Display, serif",
+            fontStyle: "italic",
+            fontSize: 14,
+            color: C.taupe,
+            lineHeight: 1.5,
+          }}>
+            Para cuidar la paleta del día, les pedimos amablemente evitar estos tonos en su vestimenta
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 18 }}>
+            {AVOID_COLORS.map((color) => (
+              <span
+                key={color}
+                style={{
+                  width: 34,
+                  height: 34,
+                  borderRadius: "50%",
+                  background: color,
+                  border: "1px solid rgba(75,53,42,.18)",
+                }}
+              />
+            ))}
+          </div>
+        </InViewFade>
 
         <InViewFade delay={0.35} style={{ width: "100%", marginTop: 32, display: "flex", flexDirection: "column", gap: 12 }}>
           <OutlineLink href={PINTEREST_ELLAS} target="_blank" rel="noopener noreferrer">
