@@ -1,4 +1,5 @@
 import extendedKiss from "@/assets/extended-hand-kiss.jpg";
+import avoidOutfits from "@/assets/avoid-outfits.png";
 import { C, Paper, EngravedFrame, Overline, Flourish, TamedPhoto, OutlineLink, InViewFade } from "./shared";
 
 const PINTEREST_ELLAS = "https://pin.it/43jLPi8hP";
@@ -23,7 +24,6 @@ const OPTIONS: DressOption[] = [
   },
 ];
 
-const AVOID_COLORS = ["#F6F1E7", "#B7D0E8", "#5D93C4", "#4A6F94"];
 
 const GenderLabel = ({ children }: { children: React.ReactNode }) => (
   <span style={{
@@ -130,22 +130,19 @@ const Dresscode = () => {
             color: C.taupe,
             lineHeight: 1.5,
           }}>
-            Para cuidar la paleta del día, les pedimos amablemente evitar estos tonos en su vestimenta
+            Estos looks están reservados para la novia, el novio, las damas y los padrinos —
+            les pedimos amablemente evitar vestirse así
           </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 16, marginTop: 18 }}>
-            {AVOID_COLORS.map((color) => (
-              <span
-                key={color}
-                style={{
-                  width: 34,
-                  height: 34,
-                  borderRadius: "50%",
-                  background: color,
-                  border: "1px solid rgba(75,53,42,.18)",
-                }}
-              />
-            ))}
-          </div>
+          <img
+            src={avoidOutfits}
+            alt="Outfits reservados para la novia, el novio, las damas de honor y los padrinos"
+            style={{
+              width: "100%",
+              marginTop: 18,
+              borderRadius: 4,
+              border: "1px solid rgba(75,53,42,.18)",
+            }}
+          />
         </InViewFade>
 
         <InViewFade delay={0.35} style={{ width: "100%", marginTop: 32, display: "flex", flexDirection: "column", gap: 12 }}>
