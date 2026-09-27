@@ -186,6 +186,13 @@ export const guestCodes: GuestInfo[] = [
     price: 90000
   },
   {
+    code: "PABLOS2027",
+    name: "Pablo San Miguel",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+    help: "Sabemos que venís de lejos, ¡No dudes en consultarle a Santi por las mejores formas de llegar y combinar tus vuelos/colectivos!",
+    price: 90000
+  },
+  {
     code: "KHALILT2027",
     name: "Khalil Taborda",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
