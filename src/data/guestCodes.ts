@@ -287,6 +287,16 @@ export const guestCodes: GuestInfo[] = [
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
     price: 90000
   },
+  {
+    code: "MARIZAS2027",
+    name: "Mariza Salazar",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+  },
+   {
+    code: "DANIELF2027",
+    name: "Daniel Flores",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+  },
 
   // --- MELI ---
   {
