@@ -742,6 +742,18 @@ export const guestCodes: GuestInfo[] = [
     name: "Hugo Ferreira",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
     price: 90000
+  },
+  {
+    code: "LUISAB2027",
+    name: "Luisa Buono",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+    price: 90000
+  },
+  {
+    code: "OSCARM2027",
+    name: "Oscar Mansilla",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+    price: 90000
   }
 ];
 
