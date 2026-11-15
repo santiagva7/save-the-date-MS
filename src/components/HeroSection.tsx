@@ -203,8 +203,8 @@ export const HeroSection = ({ guest }: HeroSectionProps) => {
               {/* Civil */}
               <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6, padding: "0 6px" }}>
                 <span style={{ fontFamily: "Playfair Display, serif", fontSize: 11, letterSpacing: ".34em", textTransform: "uppercase", color: ink }}>Civil</span>
-                <span style={{ fontFamily: "Playfair Display, serif", fontSize: 18, color: ink }}>Fecha a confirmar</span>
-                <span style={{ fontSize: 13, color: taupe, letterSpacing: ".02em" }}>Horario a confirmar</span>
+                <span style={{ fontFamily: "Playfair Display, serif", fontSize: 18, color: ink }}>8 de Enero, 2027</span>
+                <span style={{ fontSize: 13, color: taupe, letterSpacing: ".02em" }}>12:00 hs</span>
               </div>
 
               {/* Hairline separator */}
