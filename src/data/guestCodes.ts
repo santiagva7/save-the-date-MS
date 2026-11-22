@@ -297,8 +297,37 @@ export const guestCodes: GuestInfo[] = [
     name: "Daniel Flores",
     message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
   },
+     {
+    code: "PAULAF2027",
+    name: "Paula Flores",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+  },
+     {
+    code: "NICOLASB2027",
+    name: "Nicolás Bauducco",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+  },
+     {
+    code: "MICAELAM2027",
+    name: "Micaela Mazzei",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+  },
+     {
+    code: "FLORENCEP2027",
+    name: "Florence Phillips",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+  },
+
+
+
+
 
   // --- MELI ---
+     {
+    code: "VICTORIAF2027",
+    name: "Victoria Fuentes",
+    message: "Hay momentos que se vuelven aún más especiales cuando los compartimos con quienes queremos. Nos encantaría que seas parte de este día tan importante para nosotros.",
+  },
   {
     code: "SERGIOC2027",
     name: "Sergio Capel",
