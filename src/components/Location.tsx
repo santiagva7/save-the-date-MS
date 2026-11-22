@@ -105,10 +105,10 @@ const Location = () => {
               scrollWheelZoom={false}
               zoomControl={false}
             >
-              <TileLayer
-              url={`https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY}`}
-              attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>'
-              />
+             <TileLayer
+  url={`https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=${CARTO_API_KEY}`}
+  attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>'
+/>
               <Marker position={COORDS} icon={diamondMarker} />
               <MapFixer />
             </MapContainer>
