@@ -8,6 +8,8 @@ import { C, Paper, EngravedFrame, Overline, Flourish, TamedPhoto, OutlineLink, I
 const COORDS: [number, number] = [-33.9120039, -60.57925339999999];
 const MAPS_URL = `https://www.google.com/maps?q=${COORDS[0]},${COORDS[1]}`;
 
+const CARTO_API_KEY = import.meta.env.VITE_CARTO_API_KEY;
+
 // Marcador rombo dorado
 const diamondMarker = L.divIcon({
   html: `<div style="position:relative;width:20px;height:20px;display:flex;align-items:center;justify-content:center;">
